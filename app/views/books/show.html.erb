@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Book #<%= @the_book.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/books">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_book/<%= @the_book.id %>">
+          Delete book
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Cover
+      </dt>
+      <dd>
+        <%= @the_book.cover %>
+      </dd>
+
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_book.title %>
+      </dd>
+
+      <dt>
+        Author
+      </dt>
+      <dd>
+        <%= @the_book.author_id %>
+      </dd>
+
+      <dt>
+        Synoposis
+      </dt>
+      <dd>
+        <%= @the_book.synoposis %>
+      </dd>
+
+      <dt>
+        Publication date
+      </dt>
+      <dd>
+        <%= @the_book.publication_date %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_book.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_book.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit book
+    </h2>
+
+    <form action="/modify_book/<%= @the_book.id %>"  method="post" >
+      <div>
+        <label for="cover_box">
+          Cover
+        </label>
+
+        <input type="text" id="cover_box" name="query_cover" value="<%= @the_book.cover %>">
+      </div>
+
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_book.title %>">
+      </div>
+
+      <div>
+        <label for="author_id_box">
+          Author
+        </label>
+
+        <input type="text" id="author_id_box" name="query_author_id" value="<%= @the_book.author_id %>">
+      </div>
+
+      <div>
+        <label for="synoposis_box">
+          Synoposis
+        </label>
+
+        <textarea id="synoposis_box" name="query_synoposis"><%= @the_book.synoposis %></textarea>
+      </div>
+
+      <div>
+        <label for="publication_date_box">
+          Publication date
+        </label>
+
+        <input type="date" id="publication_date_box" name="query_publication_date" value="<%= @the_book.publication_date %>">
+      </div>
+
+      <button>
+        Update book
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
