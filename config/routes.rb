@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get("/", { :controller => "users", :action => "profile"})
+
   # Routes for the Review resource:
 
   # CREATE
@@ -64,8 +66,7 @@ Rails.application.routes.draw do
   get("/delete_genre/:path_id", { :controller => "genres", :action => "destroy" })
 
   #------------------------------
-
-  get("/", { :controller => "users", :action => "profile"})
+  
   # Routes for the Author resource:
 
   # CREATE
