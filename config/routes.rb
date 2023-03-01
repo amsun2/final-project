@@ -2,23 +2,6 @@ Rails.application.routes.draw do
 
   get("/", { :controller => "users", :action => "profile"})
 
-  # Routes for the Review resource:
-
-  # CREATE
-  post("/insert_review", { :controller => "reviews", :action => "create" })
-          
-  # READ
-  get("/reviews", { :controller => "reviews", :action => "index" })
-  
-  get("/reviews/:path_id", { :controller => "reviews", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_review/:path_id", { :controller => "reviews", :action => "update" })
-  
-  # DELETE
-  get("/delete_review/:path_id", { :controller => "reviews", :action => "destroy" })
-
   #------------------------------
 
   # Routes for the User account:
@@ -105,6 +88,21 @@ Rails.application.routes.draw do
 
   #------------------------------
 
+  # Routes for the Review resource:
 
+  # CREATE
+  post("/insert_review", { :controller => "reviews", :action => "create" })
+          
+  # READ
+  get("/reviews", { :controller => "reviews", :action => "index" })
+  
+  get("/reviews/:path_id", { :controller => "reviews", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_review/:path_id", { :controller => "reviews", :action => "update" })
+  
+  # DELETE
+  get("/delete_review/:path_id", { :controller => "reviews", :action => "destroy" })
 
 end

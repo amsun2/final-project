@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Genre #<%= @the_genre.id %> details
+      <%= @the_genre.genre %> books
     </h1>
 
     <div>
@@ -18,45 +18,29 @@
       </div>
     </div>
 
-    <dl>
-      <dt>
-        Book
-      </dt>
-      <dd>
-        <%= @the_genre.book_id %>
-      </dd>
-
-      <dt>
-        Genre
-      </dt>
-      <dd>
-        <%= @the_genre.genre %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_genre.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_genre.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
-
 <hr>
 
+<table border="1">
+  <tr>
+    <th> Title (link to book details page) </th>
+    <th> Synoposis </th> 
+    <th> Publication Date </th> 
+    <th> Average Rating </th> 
+  <tr> 
+  <tr>
+    <td> Blah </th>
+    <td> Blah </th> 
+    <td> Blah </th> 
+    <td> Blah </th> 
+  <tr> 
+</table>
+
+<hr>
 
 <div>
   <div>
     <h2>
-      Edit genre
+      Edit genre (DELETE?)
     </h2>
 
     <form action="/modify_genre/<%= @the_genre.id %>"  method="post" >
@@ -82,5 +66,3 @@
     </form>
   </div>
 </div>
-
-<hr>

@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all genres
+      Browse by genre
     </h1>
   </div>
 </div>
@@ -11,7 +11,7 @@
 <div>
   <div>
     <h2>
-      Add a new genre
+      Add a new genre (DELETE?)
     </h2>
 
     <form action="/insert_genre" method="post">
@@ -43,28 +43,9 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Book
-        </th>
-
-        <th>
-          Genre
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
+        <th>ID</th>
+        <th>Genre</th>
+        <th></th>
       </tr>
 
       <% @list_of_genres.each do |a_genre| %>
@@ -74,23 +55,12 @@
         </td>
 
         <td>
-          <%= a_genre.book_id %>
-        </td>
-
-        <td>
           <%= a_genre.genre %>
         </td>
 
         <td>
-          <%= time_ago_in_words(a_genre.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_genre.updated_at) %> ago
-        </td>
-
-        <td>
           <a href="/genres/<%= a_genre.id %>">
-            Show details
+            Show books
           </a>
         </td>
       </tr>
