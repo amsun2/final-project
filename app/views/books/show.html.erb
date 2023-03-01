@@ -1,19 +1,13 @@
 <div>
   <div>
     <h1>
-      Book #<%= @the_book.id %> details
+      <%= @the_book.title %> details
     </h1>
 
     <div>
       <div>
         <a href="/books">
           Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_book/<%= @the_book.id %>">
-          Delete book
         </a>
       </div>
     </div>
@@ -24,13 +18,6 @@
       </dt>
       <dd>
         <%= @the_book.cover %>
-      </dd>
-
-      <dt>
-        Title
-      </dt>
-      <dd>
-        <%= @the_book.title %>
       </dd>
 
       <dt>
@@ -48,10 +35,17 @@
       </dd>
 
       <dt>
-        Publication date
+        Publication date [NEED TO FIX; LIMITING DATE TO 2018]
       </dt>
       <dd>
         <%= @the_book.publication_date %>
+      </dd>
+
+      <dt>
+        Genres (link to Genre page)
+      </dt>
+      <dd>
+        [INSERT GENRES]
       </dd>
 
       <dt>
@@ -73,59 +67,23 @@
 
 <hr>
 
+<h2> Reviews </h2> 
 
-<div>
-  <div>
-    <h2>
-      Edit book
-    </h2>
+<table border="1">
+  <tr>
+    <th> User </th>
+    <th> Review </th> 
+    <th> Date Reviewed </th> 
+  <tr> 
+</table>
 
-    <form action="/modify_book/<%= @the_book.id %>"  method="post" >
-      <div>
-        <label for="cover_box">
-          Cover
-        </label>
+<h3>Add a new review (need some way to validate user has read book) </h3>
 
-        <input type="text" id="cover_box" name="query_cover" value="<%= @the_book.cover %>">
-      </div>
+<form action="/insert_comment_record">
+  <input id="browser_photo_id" type="hidden" name="input_photo_id">
 
-      <div>
-        <label for="title_box">
-          Title
-        </label>
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
 
-        <input type="text" id="title_box" name="query_title" value="<%= @the_book.title %>">
-      </div>
-
-      <div>
-        <label for="author_id_box">
-          Author
-        </label>
-
-        <input type="text" id="author_id_box" name="query_author_id" value="<%= @the_book.author_id %>">
-      </div>
-
-      <div>
-        <label for="synoposis_box">
-          Synoposis
-        </label>
-
-        <textarea id="synoposis_box" name="query_synoposis"><%= @the_book.synoposis %></textarea>
-      </div>
-
-      <div>
-        <label for="publication_date_box">
-          Publication date
-        </label>
-
-        <input type="date" id="publication_date_box" name="query_publication_date" value="<%= @the_book.publication_date %>">
-      </div>
-
-      <button>
-        Update book
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
+  <button>Add comment</button>
+</form>
