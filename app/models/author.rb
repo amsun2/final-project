@@ -13,4 +13,6 @@ class Author < ApplicationRecord
   has_many(:books, { :class_name => "Book", :foreign_key => "author_id", :dependent => :destroy })
 
   has_many(:book_genres, { :through => :books, :source => :genres })
+
+  has_many(:book_genres, { :through => :books, :source => :genres })
 end

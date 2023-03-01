@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  def index
-    render({ :template => "users/index.html.erb"})
+  def profile
+    render({ :template => "users/profile.html.erb"})
   end
 
   def sign_up
