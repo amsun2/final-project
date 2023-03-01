@@ -1,0 +1,36 @@
+<h1> Title </h1> 
+
+<div> [BOOK COVER] </div>
+
+<p> Author (link to Author page) </p>
+
+<p> Rating </p> 
+
+<p> Synopsis </p> 
+
+<p> Genres (link to Genre page) </p> 
+
+<p> Publication Date </p> 
+
+<hr> 
+
+<h2> Reviews </h2> 
+
+<table border="1">
+  <tr>
+    <th> User </th>
+    <th> Review </th> 
+    <th> Date Reviewed </th> 
+  <tr> 
+</table>
+
+<h3>Add a new review (need some way to validate user has read book) </h3>
+
+<form action="/insert_comment_record">
+  <input id="browser_photo_id" type="hidden" name="input_photo_id">
+
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
+
+  <button>Add comment</button>
+</form>
