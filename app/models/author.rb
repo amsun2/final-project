@@ -14,5 +14,4 @@ class Author < ApplicationRecord
 
   has_many(:book_genres, { :through => :books, :source => :genres })
 
-  has_many(:book_genres, { :through => :books, :source => :genres })
 end

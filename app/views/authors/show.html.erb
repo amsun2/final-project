@@ -14,21 +14,7 @@
 
     <dl>
       <dd>
-        <%= @the_author.photo %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_author.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_author.updated_at) %> ago
+        <img src="<%= @the_author.photo %>">
       </dd>
     </dl>
   </div>
@@ -40,12 +26,27 @@
 
 <table border="1">
   <tr>
-    <th> Title (link to book details page) </th>
-    <th> Genre (link to genre page) </th> 
-    <th> Synoposis </th> 
+    <th> Title </th>
+    <th> Genre </th> 
+    <th> Synopsis </th> 
     <th> Publication Date </th> 
     <th> Average Rating </th> 
   <tr> 
+
+  <% @the_author.books.each do |a_book| %>
+  <tr>
+    <td> <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> </td>
+    <td> 
+      <% a_book.genres.each do |a_genre| %> 
+        <li> <a href="/genres/<%=a_genre.id%>"> <%= a_genre.genre %> </a> </li> 
+      <% end %>
+    </td>
+    <td> <%= a_book.synoposis %> </td>
+    <td> <%= a_book.publication_date %> </td>
+    <td> blah </td> 
+  <tr>
+  <% end %>
+
 </table>
 
 <hr>
