@@ -17,4 +17,5 @@ class Book < ApplicationRecord
   has_many(:reviews, { :class_name => "Review", :foreign_key => "book_id", :dependent => :destroy })
 
   belongs_to(:author, { :required => true, :class_name => "Author", :foreign_key => "author_id" })
+
 end

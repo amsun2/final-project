@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      <%= @the_book.title %> details
+      <%= @the_book.title %> 
     </h1>
 
     <div>
@@ -10,21 +10,29 @@
           Go back
         </a>
       </div>
+
+      <div> 
+        Add to TBR
+
+
+
+      </div>
     </div>
+
 
     <dl>
       <dt>
-        Cover
+        
       </dt>
       <dd>
-        <%= @the_book.cover %>
+        <img src="<%= @the_book.cover %>">
       </dd>
 
       <dt>
-        Author (LINK TO AUTHOR PAGE)
+        Author 
       </dt>
       <dd>
-        <a href="/authors/<%= @the_book.author_id %>"> <%= @the_book.author_id %> </a>
+        <a href="/authors/<%= @the_book.author_id %>"> <%= @the_book.author.name %> </a>
       </dd>
 
       <dt>
@@ -42,24 +50,12 @@
       </dd>
 
       <dt>
-        Genres (link to Genre page)
+        Genres 
       </dt>
       <dd>
-        [INSERT GENRES]
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_book.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_book.updated_at) %> ago
+        <% @the_book.genres.each do |a_genre| %>
+            <li> <a href="/genres/<%=a_genre.id%>"> <%= a_genre.genre %> </a> </li>
+        <% end %>
       </dd>
     </dl>
   </div>
@@ -73,17 +69,15 @@
   <tr>
     <th> User </th>
     <th> Review </th> 
-    <th> Date Reviewed </th> 
-  <tr> 
+    <th> Date Updated </th> 
+  <tr>
+  
+  <% @the_book.reviews.each do |a_review| %> 
+  <tr>
+    <td> <%= a_review.user.id %> </td> 
+    <td> <%= a_review.commentary %> </td>
+    <td> <%= time_ago_in_words(a_review.updated_at)%> ago
+  </tr> 
+  <%end %>
+
 </table>
-
-<h3>Add a new review (need some way to validate user has read book) </h3>
-
-<form action="/insert_comment_record">
-  <input id="browser_photo_id" type="hidden" name="input_photo_id">
-
-  <label for="browser_comment">Comment</label>
-  <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
-
-  <button>Add comment</button>
-</form>
