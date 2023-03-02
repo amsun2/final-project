@@ -10,29 +10,27 @@
           Go back
         </a>
       </div>
-
-      <div>
-        <a href="/delete_genre/<%= @the_genre.id %>">
-          Delete genre
-        </a>
-      </div>
     </div>
 
 <hr>
 
 <table border="1">
   <tr>
-    <th> Title (link to book details page) </th>
-    <th> Synoposis </th> 
+    <th> Title </th>
+    <th> Synopsis </th> 
     <th> Publication Date </th> 
     <th> Average Rating </th> 
   <tr> 
+
+  <% @the_genre.author_book_pair.books.each do |a_book| %>
   <tr>
-    <td> Blah </th>
-    <td> Blah </th> 
-    <td> Blah </th> 
+    <td> <a href="/books/<%= a_book.id %>"> <%= a_book.title %> </a> </th>
+    <td> <%= a_book.synoposis %> </th> 
+    <td> <%= a_book.publication_date %> </th> 
     <td> Blah </th> 
   <tr> 
+  <% end %>
+
 </table>
 
 <hr>
