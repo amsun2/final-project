@@ -13,58 +13,61 @@
 
 <table border = "1">
   <tr> 
-    <th>
-      Status
-    </th>
-
-    <th>
-      Title (link to Book Details page)
-    </th>
-
-    <th>
-      Author (link to Author page)
-    </th>
-
-    <th>
-      Publication Year
-    </th>
-
-    <th>
-      Genre (link to Genre page)
-    </th>
-
-    <th>
-      Date Added
-    </th>
-
-    <th>
-      Synoposis 
-    </th>
+    <th> Status </th>
+    <th> Title (link to Book Details page)</th>
+    <th> Author (link to Author page)</th>
+    <th> Publication Year </th>
+    <th> Genre (link to Genre page)</th>
+    <th> Date Added </th>
+    <th> Synoposis </th>
 
     <tr>
       <td> 
         Blah
       </td>
     </tr>
-
 </table>
 
-<dt> Add new book (POTENTIALLY REMOVE, rely on only adding books already uploaded into TBR) </dt>
-  <form>
-    <label for ="new_TBR"> Title </label>
-    <input id ="new_TBR" type="text" name="input_TBR" value="assign_value"> 
-   
-    <label for ="new_author"> Author </label>
-    <input id ="new_author" type="text" name="input_author" value="assign_value">   
+<hr>
 
-    <label for ="new_pub_year"> Publication Year </label>
-    <input id ="new_pub_year" type="text" name="input_pub_year" value="assign_value"> 
+<div>
+  <div>
+    <h3>
+      Add a new book
+    </h3>
 
-    <label for ="new_genre"> Genre </label>
-    <input id ="new_genre" type="text" name="input_pub_year" value="assign_value"> 
-   
-    <button> Add to TBR </button>
-  </form>
+    <form action="/insert_book" method="post">
+      <div>
+        <label for="cover_box"> Cover </label>
+        <input type="text" id="cover_box" name="query_cover">
+      </div>
+
+      <div>
+        <label for="title_box"> Title </label>
+        <input type="text" id="title_box" name="query_title">
+      </div>
+
+      <div>
+        <label for="author_id_box"> Author </label>
+        <input type="text" id="author_id_box" name="query_author_id">
+      </div>
+
+      <div>
+        <label for="synoposis_box"> Synoposis </label>
+        <textarea id="synoposis_box" name="query_synoposis" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="publication_date_box"> Publication date </label>
+        <input type="date" id="publication_date_box" name="query_publication_date">
+      </div>
+
+      <button>
+        Add to TBR
+      </button>
+    </form>
+  </div>
+</div>
 
 <hr>
 
@@ -72,33 +75,13 @@
 
 <table border = "1">
   <tr> 
-    <th>
-      Title (link to details page)
-    </th>
-
-    <th>
-      Author (link to authors page)
-    </th>
-
-    <th>
-      Rating
-    </th>
-
-    <th>
-      Review
-    </th>
-
-    <th>
-      Update Review
-    </th>
-
-    <th>
-      Delete Review
-    </th>
-
-    <th>
-      Date Completed (time marked COMPLETE)
-    </th>
+    <th> Title (link to details page) </th>
+    <th> Author (link to authors page) </th>
+    <th> Rating </th>
+    <th> Review </th>
+    <th> Update Review </th>
+    <th> Delete Review </th>
+    <th> Date Completed (time marked COMPLETE) </th>
 
     <tr>
       <td> 
@@ -107,6 +90,55 @@
     </tr>
 
 </table>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new review
+    </h2>
+
+    <form action="/insert_review" method="post">
+      <div>
+        <label for="book_id_box">
+          Book
+        </label>
+
+        <input type="text" id="book_id_box" name="query_book_id">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="rating_box">
+          Rating
+        </label>
+
+        <input type="text" id="rating_box" name="query_rating">
+      </div>
+
+      <div>
+        <label for="commentary_box">
+          Commentary
+        </label>
+
+        <textarea id="commentary_box" name="query_commentary" rows="3"></textarea>
+      </div>
+
+      <button>
+        Create review
+      </button>
+    </form>
+  </div>
+</div>
+
 
 <hr>
 
