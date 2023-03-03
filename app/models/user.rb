@@ -14,4 +14,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many(:reviews, { :class_name => "Review", :foreign_key => "user_id", :dependent => :destroy })
+
+  has_many(:tbrs, { :class_name => "Tbr", :foreign_key => "user_id", :dependent => :destroy })
+  
 end

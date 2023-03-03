@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
 
+  # Routes for the Tbr resource:
+
+  # CREATE
+  post("/insert_tbr", { :controller => "tbrs", :action => "create" })
+          
+  # READ
+  get("/tbrs", { :controller => "tbrs", :action => "index" })
+  
+  get("/tbrs/:path_id", { :controller => "tbrs", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_tbr/:path_id", { :controller => "tbrs", :action => "update" })
+  
+  # DELETE
+  get("/delete_tbr/:path_id", { :controller => "tbrs", :action => "destroy" })
+
+  #------------------------------
+
   get("/", { :controller => "users", :action => "profile"})
 
   #------------------------------

@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all tbrs
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new tbr
+    </h2>
+
+    <form action="/insert_tbr" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="book_id_box">
+          Book
+        </label>
+
+        <input type="text" id="book_id_box" name="query_book_id">
+      </div>
+
+      <button>
+        Create tbr
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Book
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_tbrs.each do |a_tbr| %>
+      <tr>
+        <td>
+          <%= a_tbr.id %>
+        </td>
+
+        <td>
+          <%= a_tbr.user_id %>
+        </td>
+
+        <td>
+          <%= a_tbr.book_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_tbr.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_tbr.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/tbrs/<%= a_tbr.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
