@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Review #<%= @the_review.id %> details
+      My <%= @the_review.book.title %> Review
     </h1>
 
     <div>
@@ -13,26 +13,12 @@
 
       <div>
         <a href="/delete_review/<%= @the_review.id %>">
-          Delete review
+          Delete review (REMOVE THIS OR FIGURE OUT NIL CLASS THING??)
         </a>
       </div>
     </div>
 
     <dl>
-      <dt>
-        Book
-      </dt>
-      <dd>
-        <%= @the_review.book_id %>
-      </dd>
-
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_review.user_id %>
-      </dd>
-
       <dt>
         Rating
       </dt>
