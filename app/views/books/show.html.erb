@@ -69,12 +69,12 @@
   <tr>
     <th> User </th>
     <th> Review </th> 
-    <th> Date Updated </th> 
+    <th> Time Updated </th> 
   <tr>
   
   <% @the_book.reviews.each do |a_review| %> 
   <tr>
-    <td> <%= a_review.user.id %> </td> 
+    <td> <%= a_review.user.username %> </td> 
     <td> <%= a_review.commentary %> </td>
     <td> <%= time_ago_in_words(a_review.updated_at)%> ago
   </tr> 

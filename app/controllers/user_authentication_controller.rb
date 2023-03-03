@@ -60,6 +60,7 @@ class UserAuthenticationController < ApplicationController
   def update
     @user = @current_user
     @user.email = params.fetch("query_email")
+    @user.username = params.fetch("query_username")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     
