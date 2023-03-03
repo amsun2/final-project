@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_03_011430) do
+ActiveRecord::Schema.define(version: 2023_03_03_020644) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2023_03_03_011430) do
     t.integer "author_id"
     t.text "synoposis"
     t.date "publication_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "completeds", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

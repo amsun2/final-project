@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
 
+  # Routes for the Completed resource:
+
+  # CREATE
+  post("/insert_completed", { :controller => "completeds", :action => "create" })
+          
+  # READ
+  get("/completeds", { :controller => "completeds", :action => "index" })
+  
+  get("/completeds/:path_id", { :controller => "completeds", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_completed/:path_id", { :controller => "completeds", :action => "update" })
+  
+  # DELETE
+  get("/delete_completed/:path_id", { :controller => "completeds", :action => "destroy" })
+
+  #------------------------------
+
   get("/", { :controller => "profiles", :action => "profile"})
 
   #------------------------------

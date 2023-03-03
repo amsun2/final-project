@@ -17,4 +17,5 @@ class User < ApplicationRecord
 
   has_many(:tbrs, { :class_name => "Tbr", :foreign_key => "user_id", :dependent => :destroy })
   
+  has_many(:completeds, { :class_name => "Completed", :foreign_key => "user_id", :dependent => :destroy })
 end

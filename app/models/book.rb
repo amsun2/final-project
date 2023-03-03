@@ -20,4 +20,6 @@ class Book < ApplicationRecord
 
   has_many(:tbrs, { :class_name => "Tbr", :foreign_key => "book_id", :dependent => :destroy })
 
+  has_many(:completeds, { :class_name => "Completed", :foreign_key => "book_id", :dependent => :destroy })
+
 end
