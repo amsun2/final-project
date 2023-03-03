@@ -38,7 +38,7 @@
     <td> <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> </td>
     <td> 
       <% a_book.genres.each do |a_genre| %> 
-        <li> <a href="/genres/<%=a_genre.id%>"> <%= a_genre.genre %> </a> </li> 
+        <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li> 
       <% end %>
     </td>
     <td> <%= a_book.synoposis %> </td>
