@@ -54,7 +54,7 @@
       </dt>
       <dd>
         <% @the_book.genres.each do |a_genre| %>
-            <li> <a href="/genres/<%=a_genre.id%>"> <%= a_genre.genre %> </a> </li>
+            <li> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </li>
         <% end %>
       </dd>
     </dl>
