@@ -1,7 +1,10 @@
-class UsersController < ApplicationController
+class ProfilesController < ApplicationController
 
   def profile
-    render({ :template => "users/profile.html.erb"})
+
+    @user = @current_user
+        
+    render({ :template => "profiles/details.html.erb"})
   end
 
   def sign_up

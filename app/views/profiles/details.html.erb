@@ -14,52 +14,54 @@
 <table border = "1">
   <tr> 
     <th> Status </th>
-    <th> Title (link to Book Details page)</th>
-    <th> Author (link to Author page)</th>
-    <th> Publication Year </th>
-    <th> Genre (link to Genre page)</th>
-    <th> Date Added </th>
-    <th> Synoposis </th>
+    <th> </th> 
+    <th> Title </th>
+    <th> Author </th>
+    <th> Publication Year (UPDATE TO JUST YEAR) </th>
+    <th> Genre (ORDER LIST)</th>
+    <th> Shelf Life </th>
 
+  <% @user.tbrs.each do |a_TBR| %>
     <tr>
+      <td> Currently Reading / On Shelf </td>
+      <td> <img src="<%= a_TBR.book.cover %>"> </td> 
+      <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
+      <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 
+      <td> <%= a_TBR.book.publication_date %> </td> 
       <td> 
-        Blah
+        <% a_TBR.book.genres.each do |a_genre| %>
+          <li> <a href="/genres/<%=a_genre.id%>"> <%= a_genre.genre %> </a> </li>
+        <% end %>
       </td>
+      <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
     </tr>
+  <% end %>
+
 </table>
 
 <hr>
 
 <div>
   <div>
-    <h3>
-      Add a new book
-    </h3>
+    <h2>
+      Add a new tbr
+    </h2>
 
-    <form action="/insert_book" method="post">
+    <form action="/insert_tbr" method="post">
       <div>
-        <label for="cover_box"> Cover </label>
-        <input type="text" id="cover_box" name="query_cover">
+        <label for="user_id_box">
+          User (NEED TO AUTOPOPULATE USERNAME)
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
       </div>
 
       <div>
-        <label for="title_box"> Title </label>
-        <input type="text" id="title_box" name="query_title">
-      </div>
+        <label for="book_id_box">
+          Book
+        </label>
 
-      <div>
-        <label for="author_id_box"> Author </label>
-        <input type="text" id="author_id_box" name="query_author_id">
-      </div>
-
-      <div>
-        <label for="synoposis_box"> Synoposis </label>
-        <textarea id="synoposis_box" name="query_synoposis" rows="3"></textarea>
-      </div>
-
-      <div>
-        <label for="publication_date_box"> Publication date </label>
-        <input type="date" id="publication_date_box" name="query_publication_date">
+        <input type="text" id="book_id_box" name="query_book_id">
       </div>
 
       <button>

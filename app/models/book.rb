@@ -18,4 +18,6 @@ class Book < ApplicationRecord
 
   belongs_to(:author, { :required => true, :class_name => "Author", :foreign_key => "author_id" })
 
+  has_many(:tbrs, { :class_name => "Tbr", :foreign_key => "book_id", :dependent => :destroy })
+
 end
