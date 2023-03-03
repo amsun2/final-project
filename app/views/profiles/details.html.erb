@@ -77,19 +77,25 @@
 
 <table border = "1">
   <tr> 
-    <th> Title (link to details page) </th>
-    <th> Author (link to authors page) </th>
+    <th> Title </th>
+    <th> Author </th>
     <th> Rating </th>
     <th> Review </th>
     <th> Update Review </th>
     <th> Delete Review </th>
-    <th> Date Completed (time marked COMPLETE) </th>
+    <th> Time Completed </th>
 
-    <tr>
-      <td> 
-        Blah
-      </td>
-    </tr>
+  <% @user.completeds.each do |a_book| %>
+  <tr>
+    <td> <a href="/books/<%=a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
+    <td> <a href="/authors/<%= a_book.book.author.id %>"> <%= a_book.book.author.name %> </a>  </td> 
+    <td> <%= a_book.book.reviews.at(0).rating %> </td> 
+    <td> <%= a_book.book.reviews.at(0).commentary %> </td>
+    <td> </td> 
+    <td> </td> 
+    <td> <%= time_ago_in_words(a_book.created_at) %> ago
+  </tr>
+  <% end %>
 
 </table>
 
