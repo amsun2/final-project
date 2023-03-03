@@ -14,8 +14,8 @@
 <table border = "1">
   <tr> 
     <th> Status (FIGURE OUT DROP-DOWN) </th>
-    <th> </th> 
     <th> Title </th>
+    <th> </th> 
     <th> Author </th>
     <th> Publication Year (UPDATE TO JUST YEAR) </th>
     <th> Genre (ORDER LIST)</th>
@@ -78,6 +78,7 @@
 <table border = "1">
   <tr> 
     <th> Title </th>
+    <th> </th> 
     <th> Author </th>
     <th> Rating </th>
     <th> Review </th>
@@ -86,6 +87,7 @@
 
   <% @user.completeds.each do |a_book| %>
   <tr>
+    <td> <img src="<%=a_book.book.cover%>" > </td>
     <td> <a href="/books/<%=a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
     <td> <a href="/authors/<%= a_book.book.author.id %>"> <%= a_book.book.author.name %> </a>  </td> 
     <td> <%= a_book.book.reviews.at(0).rating %> </td> 
