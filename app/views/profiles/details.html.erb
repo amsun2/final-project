@@ -30,7 +30,7 @@
       <td> <%= a_TBR.book.publication_date %> </td> 
       <td> 
         <% a_TBR.book.genres.each do |a_genre| %>
-          <li> <a href="/genres/<%=a_genre.id%>"> <%= a_genre.genre %> </a> </li>
+          <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
         <% end %>
       </td>
       <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 

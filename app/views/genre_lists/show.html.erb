@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Genre list #<%= @the_genre_list.id %> details
+      <%= @the_genre_list.genre_name %> books
     </h1>
 
     <div>
@@ -10,62 +10,30 @@
           Go back
         </a>
       </div>
-
-      <div>
-        <a href="/delete_genre_list/<%= @the_genre_list.id %>">
-          Delete genre list
-        </a>
-      </div>
     </div>
-
-    <dl>
-      <dt>
-        Genre name
-      </dt>
-      <dd>
-        <%= @the_genre_list.genre_name %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_genre_list.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_genre_list.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
 
 <hr>
 
+<table border="1">
+  <tr>
+    <th> Title </th>
+    <th> Author </th> 
+    <th> Synopsis </th> 
+    <th> Publication Date </th> 
+    <th> Average Rating </th> 
+  <tr> 
 
-<div>
-  <div>
-    <h2>
-      Edit genre list
-    </h2>
+  <% @the_genre_list.genres_book_associations.each do |a_book| %>
+    <tr> 
+      <td> <a href="/books/<%= a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
+      <td> <a href="/authors/<%= a_book.book.author_id%>"> <%= a_book.book.author.name %> </a> </td> 
+      <td> <%= a_book.book.synoposis %> </td> 
+      <td> <%= a_book.book.publication_date %> </td> 
+      <td> AVERAGE RATING </td> 
+    </tr> 
+  <% end %>
 
-    <form action="/modify_genre_list/<%= @the_genre_list.id %>"  method="post" >
-      <div>
-        <label for="genre_name_box">
-          Genre name
-        </label>
 
-        <input type="text" id="genre_name_box" name="query_genre_name" value="<%= @the_genre_list.genre_name %>">
-      </div>
-
-      <button>
-        Update genre list
-      </button>
-    </form>
-  </div>
-</div>
+</table>
 
 <hr>
