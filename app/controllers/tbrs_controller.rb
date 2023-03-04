@@ -19,12 +19,12 @@ class TbrsController < ApplicationController
 
   def create
     the_tbr = Tbr.new
-    the_tbr.user_id = params.fetch("query_user_id")
+    the_tbr.user_id = session[:user_id]
     the_tbr.book_id = params.fetch("query_book_id")
 
     if the_tbr.valid?
       the_tbr.save
-      redirect_to("/tbrs", { :notice => "Tbr created successfully." })
+      redirect_to("/", { :notice => "Tbr created successfully." })
     else
       redirect_to("/tbrs", { :alert => the_tbr.errors.full_messages.to_sentence })
     end
@@ -51,6 +51,6 @@ class TbrsController < ApplicationController
 
     the_tbr.destroy
 
-    redirect_to("/tbrs", { :notice => "Tbr deleted successfully."} )
+    redirect_to("/", { :notice => "Tbr deleted successfully."} )
   end
 end
