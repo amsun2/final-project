@@ -78,15 +78,17 @@
 
         <select id="book_id_box" name ="query_book_id"> 
           <% Book.all.order(:title).each do |a_book| %>
-            <option value="<%= a_book.id%>"> 
-              <%= a_book.title %> (<%= a_book.author.name %>)
-            </option >
+            <% if Completed.where(user_id: @user.id, book_id: a_book.id).length == 0 %>
+              <option value="<%= a_book.id%>"> 
+                <%= a_book.title %> (<%= a_book.author.name %>)
+              </option >
+            <% end %>
           <% end %>
         </select>
       </div>
 
       <button>
-        Add book
+        Add to TBR
       </button>
     </form>
   </div>
@@ -134,55 +136,6 @@
   <% end %>
 
 </table>
-
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new review
-    </h2>
-
-    <form action="/insert_review" method="post">
-      <div>
-        <label for="book_id_box">
-          Book
-        </label>
-
-        <input type="text" id="book_id_box" name="query_book_id">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <div>
-        <label for="rating_box">
-          Rating
-        </label>
-
-        <input type="text" id="rating_box" name="query_rating">
-      </div>
-
-      <div>
-        <label for="commentary_box">
-          Commentary
-        </label>
-
-        <textarea id="commentary_box" name="query_commentary" rows="3"></textarea>
-      </div>
-
-      <button>
-        Create review
-      </button>
-    </form>
-  </div>
-</div>
-
 
 <hr>
 
