@@ -44,7 +44,7 @@
     <td> <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> </td>
     <td> 
       <% a_book.genres.each do |a_genre| %> 
-        <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li> 
+        <li> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </li> 
       <% end %>
     </td>
     <td> <%= a_book.synoposis %> </td>
@@ -57,7 +57,11 @@
           <% rating_sum = rating_sum + rating %>
           <% rating_count = rating_count + 1 %>
         <% end %>
-        <%= rating_sum / rating_count %> 
+        <% if rating_count = 0 %>
+          No ratings yet
+        <% else %>
+          <%= rating_sum / rating_count %> 
+        <% end %>
     </td> 
   <tr>
   <% end %>
