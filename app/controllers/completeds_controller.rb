@@ -24,7 +24,7 @@ class CompletedsController < ApplicationController
 
     if the_completed.valid?
       the_completed.save
-      redirect_to("/completeds", { :notice => "Completed created successfully." })
+      redirect_to("/", { :notice => "Moved to shelf successfully." })
     else
       redirect_to("/completeds", { :alert => the_completed.errors.full_messages.to_sentence })
     end

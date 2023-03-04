@@ -37,7 +37,18 @@
       </td>
       <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
       <td> <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
-      <td> COMPLETED 
+      <td>  
+        <% current_user_completed = Completed.where({ :user_id => @user.id, :book_id => a_TBR.book_id }).at(0) %>
+
+        <% if current_user_completed == nil %> 
+          <form action="/insert_completed" method="post"> 
+            <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
+            <input type="hidden" name="query_user_id" value="<%=@user.id%>"> 
+            <button> Move to Completed Shelf </button> 
+          </form>
+        
+        <% end %>
+      </td> 
     </tr>
   <% end %>
 
