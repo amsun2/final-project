@@ -9,16 +9,16 @@
 
 <hr>
 
-<h2> My TBR </h2> 
+<h2> My TBR Shelf </h2> 
 
 <table border = "1">
   <tr> 
-    <th> Status (FIGURE OUT DROP-DOWN) </th>
+    <th> Status </th>
     <th> Title </th>
     <th> </th> 
     <th> Author </th>
-    <th> Publication Year (UPDATE TO JUST YEAR) </th>
-    <th> Genre (ORDER LIST)</th>
+    <th> Publication Year </th>
+    <th> Genre </th>
     <th> Shelf Life </th>
     <th> Remove from TBR </th> 
     <th> Completed </th> 
@@ -27,11 +27,16 @@
     <% book_id = a_TBR.book.id%>
     <% if @user.completeds.where(book_id: book_id).length() == 0 %>
       <tr>
-        <td> Currently Reading / On Shelf </td>
+        <td> 
+          <select> 
+            <option> Currently Reading </option> 
+            <option> On Shelf </option> 
+          </select>
+        </td>
         <td> <img src="<%= a_TBR.book.cover %>"> </td> 
         <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
         <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 
-        <td> <%= a_TBR.book.publication_date %> </td> 
+        <td> <%= a_TBR.book.publication_date.year() %> </td> 
         <td> 
           <% a_TBR.book.genres.each do |a_genre| %>
             <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
