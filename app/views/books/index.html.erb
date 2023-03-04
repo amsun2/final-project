@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all books
+      Browse by book
     </h1>
   </div>
 </div>
@@ -14,15 +14,11 @@
     <table border="1">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
-          Cover
-        </th>
-
-        <th>
           Title
+        </th>
+
+        <th>
+          
         </th>
 
         <th>
@@ -37,34 +33,20 @@
           Publication date
         </th>
 
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
       </tr>
 
       <% @list_of_books.each do |a_book| %>
       <tr>
         <td>
-          <%= a_book.id %>
-        </td>
-
-        <td>
           <img src="<%= a_book.cover %>">
         </td>
 
         <td>
-          <%= a_book.title %>
+          <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> 
         </td>
 
         <td>
-          <%= a_book.author_id %>
+          <a href="/authors/<%=a_book.author.id%>"> <%= a_book.author.name %> </a> 
         </td>
 
         <td>
@@ -75,18 +57,6 @@
           <%= a_book.publication_date %>
         </td>
 
-        <td>
-          <%= time_ago_in_words(a_book.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_book.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/books/<%= a_book.id %>">
-            Show details
-          </a>
-        </td>
       </tr>
       <% end %>
     </table>
