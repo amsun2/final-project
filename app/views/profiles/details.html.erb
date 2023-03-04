@@ -63,11 +63,7 @@
 
     <form action="/insert_tbr" method="post">
       <div>
-        <label for="user_id_box">
-          User (NEED TO AUTOPOPULATE USERNAME)
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%@user.id%>">
       </div>
 
       <div>
@@ -75,7 +71,13 @@
           Book
         </label>
 
-        <input type="text" id="book_id_box" name="query_book_id">
+        <select id="book_id_box" name ="query_book_id"> 
+          <% Book.all.order(:title).each do |a_book| %>
+            <option value="<%= a_book.id%>"> 
+              <%= a_book.title %> (<%= a_book.author.name %>)
+            </option >
+          <% end %>
+        </select>
       </div>
 
       <button>
