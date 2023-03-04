@@ -29,7 +29,16 @@
       <td> <a href="/authors/<%= a_book.book.author_id%>"> <%= a_book.book.author.name %> </a> </td> 
       <td> <%= a_book.book.synoposis %> </td> 
       <td> <%= a_book.book.publication_date %> </td> 
-      <td> AVERAGE RATING </td> 
+      <td> 
+        <% rating_sum = 0 %>
+        <% rating_count = 0 %>
+        <% a_book.book.reviews.each do |a_review| %>
+          <% rating = a_review.rating %> 
+          <% rating_sum = rating_sum + rating %>
+          <% rating_count = rating_count + 1 %>
+        <% end %>
+        <%= rating_sum / rating_count %> 
+      </td> 
     </tr> 
   <% end %>
 
