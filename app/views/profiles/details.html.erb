@@ -20,6 +20,8 @@
     <th> Publication Year (UPDATE TO JUST YEAR) </th>
     <th> Genre (ORDER LIST)</th>
     <th> Shelf Life </th>
+    <th> Remove from TBR </th> 
+    <th> Completed </th> 
 
   <% @user.tbrs.each do |a_TBR| %>
     <tr>
@@ -34,6 +36,8 @@
         <% end %>
       </td>
       <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
+      <td> <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
+      <td> COMPLETED 
     </tr>
   <% end %>
 
