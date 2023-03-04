@@ -49,7 +49,16 @@
     </td>
     <td> <%= a_book.synoposis %> </td>
     <td> <%= a_book.publication_date %> </td>
-    <td> blah </td> 
+    <td>
+        <% rating_sum = 0 %>
+        <% rating_count = 0 %>
+        <% a_book.reviews.each do |a_review| %>
+          <% rating = a_review.rating %> 
+          <% rating_sum = rating_sum + rating %>
+          <% rating_count = rating_count + 1 %>
+        <% end %>
+        <%= rating_sum / rating_count %> 
+    </td> 
   <tr>
   <% end %>
 
