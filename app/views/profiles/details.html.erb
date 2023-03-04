@@ -38,7 +38,8 @@
           <% end %>
         </td>
         <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
-        <td> <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
+        <td>        
+        <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
         <td>  
             <form action="/insert_completed" method="post"> 
               <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
@@ -103,10 +104,25 @@
     <td> <img src="<%=a_book.book.cover%>" > </td>
     <td> <a href="/books/<%=a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
     <td> <a href="/authors/<%= a_book.book.author.id %>"> <%= a_book.book.author.name %> </a>  </td> 
-    <td> <%= a_book.book.reviews.at(0).rating %> </td> 
-    <td> <%= a_book.book.reviews.at(0).commentary %> </td>
+    <td> <% if a_book.book.reviews.at(0) == nil %>
+            Have not rated
+          <% else %>
+            <%= a_book.book.reviews.at(0).rating %> 
+          <% end %>
+    </td>  
+    <td> <% if a_book.book.reviews.at(0) == nil %>
+            <a href="/reviews"> Write review </a> 
+          <% else %>
+            <%= a_book.book.reviews.at(0).commentary %> 
+          <% end %>
+    </td>
     <td> <%= time_ago_in_words(a_book.created_at) %> ago
-    <td> <a href="/reviews/<%=a_book.book.reviews.at(0).id %>"> Update review </a> </td> 
+    <td> <% if a_book.book.reviews.at(0) == nil %>
+            
+          <% else %>
+            <a href="/reviews/<%=a_book.book.reviews.at(0).id %>"> Update review </a> 
+          <% end %>
+    </td> 
   </tr>
   <% end %>
 
