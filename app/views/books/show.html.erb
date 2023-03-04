@@ -29,9 +29,6 @@
 
 
     <dl>
-      <dt>
-        
-      </dt>
       <dd>
         <img src="<%= @the_book.cover %>">
       </dd>
@@ -41,6 +38,20 @@
       </dt>
       <dd>
         <a href="/authors/<%= @the_book.author_id %>"> <%= @the_book.author.name %> </a>
+      </dd>
+
+      <dt>
+        Average Rating
+      </dt> 
+      <dd> 
+        <% rating_sum = 0 %>
+        <% rating_count = 0 %>
+        <% @the_book.reviews.each do |a_review| %>
+          <% rating = a_review.rating %> 
+          <% rating_sum = rating_sum + rating %>
+          <% rating_count = rating_count + 1 %>
+        <% end %>
+        <%= rating_sum / rating_count %> 
       </dd>
 
       <dt>
