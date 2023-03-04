@@ -3,6 +3,7 @@
 # Table name: authors
 #
 #  id         :integer          not null, primary key
+#  bio        :text
 #  name       :string
 #  photo      :string
 #  created_at :datetime         not null
