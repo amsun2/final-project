@@ -78,7 +78,7 @@
 
         <select id="book_id_box" name ="query_book_id"> 
           <% Book.all.order(:title).each do |a_book| %>
-            <% if Completed.where(user_id: @user.id, book_id: a_book.id).length == 0 %>
+            <% if Completed.where(user_id: @user.id, book_id: a_book.id).length == 0 && Tbr.where(user_id: @user.id, book_id: a_book.id).length==0 %>
               <option value="<%= a_book.id%>"> 
                 <%= a_book.title %> (<%= a_book.author.name %>)
               </option >
