@@ -24,32 +24,30 @@
     <th> Completed </th> 
 
   <% @user.tbrs.each do |a_TBR| %>
-    <tr>
-      <td> Currently Reading / On Shelf </td>
-      <td> <img src="<%= a_TBR.book.cover %>"> </td> 
-      <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
-      <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 
-      <td> <%= a_TBR.book.publication_date %> </td> 
-      <td> 
-        <% a_TBR.book.genres.each do |a_genre| %>
-          <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
-        <% end %>
-      </td>
-      <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
-      <td> <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
-      <td>  
-        <% current_user_completed = Completed.where({ :user_id => @user.id, :book_id => a_TBR.book_id }).at(0) %>
-
-        <% if current_user_completed == nil %> 
-          <form action="/insert_completed" method="post"> 
-            <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
-            <input type="hidden" name="query_user_id" value="<%=@user.id%>"> 
-            <button> Move to Completed Shelf </button> 
-          </form>
-        
-        <% end %>
-      </td> 
-    </tr>
+    <% book_id = a_TBR.book.id%>
+    <% if @user.completeds.where(book_id: book_id).length() == 0 %>
+      <tr>
+        <td> Currently Reading / On Shelf </td>
+        <td> <img src="<%= a_TBR.book.cover %>"> </td> 
+        <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
+        <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 
+        <td> <%= a_TBR.book.publication_date %> </td> 
+        <td> 
+          <% a_TBR.book.genres.each do |a_genre| %>
+            <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
+          <% end %>
+        </td>
+        <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
+        <td> <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
+        <td>  
+            <form action="/insert_completed" method="post"> 
+              <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
+              <input type="hidden" name="query_user_id" value="<%=@user.id%>"> 
+              <button> Move to Completed Shelf </button> 
+            </form>
+          <% end %>
+        </td> 
+      </tr>
   <% end %>
 
 </table>
