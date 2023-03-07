@@ -30,8 +30,11 @@
         </th>
 
         <th>
-          Publication date
+          Publication year
         </th>
+
+        <th> 
+        </th> 
 
       </tr>
 
@@ -54,8 +57,23 @@
         </td>
 
         <td>
-          <%= a_book.publication_date %>
+          <%= a_book.publication_date.year() %>
         </td>
+
+        <td> 
+          <% if a_book.completeds.where({book_id: a_book.id, user_id: session[:user_id]}).at(0) != nil %>
+            <% status = "On Completed Shelf" %>
+            <%= status %>
+          <% elsif a_book.tbrs.where({book_id: a_book.id, user_id: session[:user_id]}).at(0) != nil %> 
+            <% status = "On TBR Shelf" %>
+            <%= status %>
+          <% else %> 
+            <form action="/insert_tbr" method="post"> 
+              <input type="hidden" name="query_book_id" value="<%=a_book.id%>">
+              <button> Add to TBR </button> 
+            </form>
+          <% end %>
+        </td> 
 
       </tr>
       <% end %>
