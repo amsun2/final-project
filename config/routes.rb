@@ -1,43 +1,5 @@
 Rails.application.routes.draw do
 
-  # Routes for the Genre list resource:
-
-  # CREATE
-  post("/insert_genre_list", { :controller => "genre_lists", :action => "create" })
-          
-  # READ
-  get("/genre_lists", { :controller => "genre_lists", :action => "index" })
-  
-  get("/genre_lists/:path_id", { :controller => "genre_lists", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_genre_list/:path_id", { :controller => "genre_lists", :action => "update" })
-  
-  # DELETE
-  get("/delete_genre_list/:path_id", { :controller => "genre_lists", :action => "destroy" })
-
-  #------------------------------
-
-  # Routes for the Completed resource:
-
-  # CREATE
-  post("/insert_completed", { :controller => "completeds", :action => "create" })
-          
-  # READ
-  get("/completeds", { :controller => "completeds", :action => "index" })
-  
-  get("/completeds/:path_id", { :controller => "completeds", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_completed/:path_id", { :controller => "completeds", :action => "update" })
-  
-  # DELETE
-  get("/delete_completed/:path_id", { :controller => "completeds", :action => "destroy" })
-
-  #------------------------------
-
   get("/", { :controller => "profiles", :action => "profile"})
 
   #------------------------------
@@ -161,6 +123,44 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_tbr/:path_id", { :controller => "tbrs", :action => "destroy" })
+
+  #------------------------------
+
+    # Routes for the Genre list resource:
+
+  # CREATE
+  post("/insert_genre_list", { :controller => "genre_lists", :action => "create" })
+          
+  # READ
+  get("/genre_lists", { :controller => "genre_lists", :action => "index" })
+  
+  get("/genre_lists/:path_id", { :controller => "genre_lists", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_genre_list/:path_id", { :controller => "genre_lists", :action => "update" })
+  
+  # DELETE
+  get("/delete_genre_list/:path_id", { :controller => "genre_lists", :action => "destroy" })
+
+  #------------------------------
+
+  # Routes for the Completed resource:
+
+  # CREATE
+  post("/insert_completed", { :controller => "completeds", :action => "create" })
+          
+  # READ
+  get("/completeds", { :controller => "completeds", :action => "index" })
+  
+  get("/completeds/:path_id", { :controller => "completeds", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_completed/:path_id", { :controller => "completeds", :action => "update" })
+  
+  # DELETE
+  get("/delete_completed/:path_id", { :controller => "completeds", :action => "destroy" })
 
   #------------------------------
 
