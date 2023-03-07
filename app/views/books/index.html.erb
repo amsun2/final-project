@@ -82,3 +82,67 @@
 </div>
 
 <hr>
+
+<div>
+  <div>
+    <h2>
+      Don't see a book? Add here!
+    </h2>
+
+    <form action="/insert_book" method="post">
+      <div>
+        <label for="title_box">
+          Title 
+        </label>
+
+        <input type="text" id="title_box" name="query_title" placeholder="Insert title here">
+      </div>
+
+      <div>
+        <label for="cover_box">
+          Link to cover image 
+        </label>
+
+        <input type="text" id="cover_box" name="query_cover" placeholder="http://image_here.jpg">
+      </div>
+
+      <div>
+        <label for="author_box">
+          Author 
+        </label>
+
+        <select id="author_box" name ="query_author_id"> 
+          <option> Select an author </option>
+          <% Author.all.order(:name).each do |an_author| %>
+              <option value="<%= an_author.id%>"> 
+                <%= an_author.name %>
+              </option >
+          <% end %>
+        </select>
+        
+        <a href="/authors"> Don't see the author? </a>
+
+      </div>
+
+      <div>
+        <label for="date_box">
+          Publication Date 
+        </label>
+
+        <input type="text" id="date_box" name="query_publication_date" placeholder="2018-12-31">
+      </div>
+
+      <div>
+        <label for="synopsis_box">
+          Synopsis 
+        </label>
+
+        <textarea id="synopsis_box" name="query_synoposis"rows="3"></textarea>
+      </div>
+
+      <button>
+        Add book
+      </button>
+    </form>
+  </div>
+</div>
