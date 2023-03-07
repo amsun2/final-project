@@ -37,6 +37,7 @@ class AuthorsController < ApplicationController
 
     the_author.name = params.fetch("query_name")
     the_author.photo = params.fetch("query_photo")
+    the_author.bio = params.fetch("query_bio")
 
     if the_author.valid?
       the_author.save

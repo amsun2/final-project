@@ -69,3 +69,20 @@
 </table>
 
 <hr>
+
+<h3> Update author info </h3> 
+
+<div> 
+  <form action="/modify_author/<%=@the_author.id%>" method="post"> 
+    
+    <input id="name_box" name="query_name" value="<%=@the_author.name%>" type="hidden">
+
+    <label for="photo_box"> Update photo </label> 
+    <input id="photo_box" name="query_photo" placeholder="<%=@the_author.photo%>" type="text"> 
+
+    <label for="bio_box"> Update bio </label>
+    <input id="bio_box" name="query_bio" type="text"> 
+
+    <button> Update author </button>
+  </form>
+</div> 
