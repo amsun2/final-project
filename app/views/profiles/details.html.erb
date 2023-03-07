@@ -46,7 +46,7 @@
         <td>        
         <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
         <td>  
-            <form action="/insert_completed" method="post"> 
+            <form action="/move_to_completed/<%=a_TBR.id%>" method="post"> 
               <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
               <input type="hidden" name="query_user_id" value="<%=@user.id%>"> 
               <button> Move to Completed Shelf </button> 
@@ -107,6 +107,7 @@
     <th> My Review </th>
     <th> Time Completed </th>
     <th> </th>
+    <th> </th> 
 
   <% @user.completeds.each do |a_book| %>
   <tr>
@@ -131,6 +132,8 @@
           <% else %>
             <a href="/reviews/<%=a_book.book.reviews.at(0).id %>"> Update review </a> 
           <% end %>
+    </td> 
+    <td> <a href="/delete_completed/<%= a_book.id %>"> Remove from shelf </a> 
     </td> 
   </tr>
   <% end %>

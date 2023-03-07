@@ -51,6 +51,6 @@ class CompletedsController < ApplicationController
 
     the_completed.destroy
 
-    redirect_to("/completeds", { :notice => "Completed deleted successfully."} )
+    redirect_to("/", { :notice => "Removed from shelf successfully."} )
   end
 end

@@ -51,6 +51,24 @@ class TbrsController < ApplicationController
 
     the_tbr.destroy
 
-    redirect_to("/", { :notice => "Tbr deleted successfully."} )
+    redirect_to("/", { :notice => "Removed from shelf successfully."} )
   end
+
+  def move
+    the_id = params.fetch("path_id")
+    the_tbr = Tbr.where({ :id => the_id }).at(0)
+
+    the_completed = Completed.new
+    the_completed.book_id = params.fetch("query_book_id")
+    the_completed.user_id = params.fetch("query_user_id")
+
+    if the_completed.valid?
+      the_completed.save
+      the_tbr.destroy
+      redirect_to("/", { :notice => "Moved to shelf successfully." })
+    else
+      redirect_to("/", { :alert => the_completed.errors.full_messages.to_sentence })
+    end
+  end
+
 end

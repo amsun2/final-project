@@ -18,11 +18,11 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @the_review = Review.new
-    @the_review.book_id = params.fetch("query_book_id")
-    @the_review.user_id = params.fetch("query_user_id")
-    @the_review.rating = params.fetch("query_rating")
-    @the_review.commentary = params.fetch("query_commentary")
+    the_review = Review.new
+    the_review.book_id = params.fetch("query_book_id")
+    the_review.user_id = params.fetch("query_user_id")
+    the_review.rating = params.fetch("query_rating")
+    the_review.commentary = params.fetch("query_commentary")
 
     if the_review.valid?
       the_review.save

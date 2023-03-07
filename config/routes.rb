@@ -111,6 +111,8 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_tbr", { :controller => "tbrs", :action => "create" })
+
+  post("/move_to_completed/:path_id", { :controller => "tbrs", :action => "move" })
           
   # READ
   get("/tbrs", { :controller => "tbrs", :action => "index" })
