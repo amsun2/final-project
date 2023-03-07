@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
   def index
     matching_authors = Author.all
 
-    @list_of_authors = matching_authors.order({ :created_at => :desc })
+    @list_of_authors = matching_authors.order({ :name => :asc })
 
     render({ :template => "authors/index.html.erb" })
   end
@@ -21,6 +21,7 @@ class AuthorsController < ApplicationController
     the_author = Author.new
     the_author.name = params.fetch("query_name")
     the_author.photo = params.fetch("query_photo")
+    the_author.bio = params.fetch("query_bio") 
 
     if the_author.valid?
       the_author.save

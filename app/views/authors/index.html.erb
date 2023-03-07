@@ -8,59 +8,17 @@
 
 <hr>
 
-<div>
-  <div>
-    <h2>
-      Add a new author
-    </h2>
-
-    <form action="/insert_author" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <div>
-        <label for="photo_box">
-          Photo
-        </label>
-
-        <input type="text" id="photo_box" name="query_photo">
-      </div>
-
-      <button>
-        Create author
-      </button>
-    </form>
-  </div>
-</div>
-
 <hr>
 <div>
   <div>
     <table border="1">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
           Name
         </th>
 
         <th>
           Photo
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
         </th>
 
         <th>
@@ -70,22 +28,11 @@
       <% @list_of_authors.each do |an_author| %>
       <tr>
         <td>
-          <%= an_author.id %>
-        </td>
-
-        <td>
           <%= an_author.name %>
         </td>
 
         <td>
-          <%= an_author.photo %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(an_author.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(an_author.updated_at) %> ago
+          <img src="<%= an_author.photo %>">
         </td>
 
         <td>
@@ -100,3 +47,42 @@
 </div>
 
 <hr>
+
+
+<div>
+  <div>
+    <h2>
+      Don't see an author? Add here!
+    </h2>
+
+    <form action="/insert_author" method="post">
+      <div>
+        <label for="name_box">
+          Name 
+        </label>
+
+        <input type="text" id="name_box" name="query_name" placeholder="First Name Last Name">
+      </div>
+
+      <div>
+        <label for="photo_box">
+          Link to photo 
+        </label>
+
+        <input type="text" id="photo_box" name="query_photo" placeholder="http://image_here.jpg">
+      </div>
+
+      <div>
+        <label for="bio_box">
+          Biography 
+        </label>
+
+        <input type="text" id="bio_box" name="query_bio" type="text">
+      </div>
+
+      <button>
+        Create author
+      </button>
+    </form>
+  </div>
+</div>
