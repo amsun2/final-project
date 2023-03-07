@@ -26,9 +26,9 @@ class ReviewsController < ApplicationController
 
     if the_review.valid?
       the_review.save
-      redirect_to("/reviews", { :notice => "Review created successfully." })
+      redirect_to("/", { :notice => "Review created successfully." })
     else
-      redirect_to("/reviews", { :alert => the_review.errors.full_messages.to_sentence })
+      redirect_to("/", { :alert => the_review.errors.full_messages.to_sentence })
     end
   end
 
@@ -55,6 +55,6 @@ class ReviewsController < ApplicationController
 
     the_review.destroy
 
-    redirect_to("/reviews", { :notice => "Review deleted successfully."} )
+    redirect_to("/", { :notice => "Review deleted successfully."} )
   end
 end

@@ -12,4 +12,5 @@ class Completed < ApplicationRecord
   belongs_to(:book, { :required => true, :class_name => "Book", :foreign_key => "book_id" })
 
   belongs_to(:user, { :required => true, :class_name => "User", :foreign_key => "user_id" })
+
 end
