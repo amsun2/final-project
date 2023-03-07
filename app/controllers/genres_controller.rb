@@ -39,9 +39,9 @@ class GenresController < ApplicationController
 
     if the_genre.valid?
       the_genre.save
-      redirect_to("/genres/#{the_genre.id}", { :notice => "Genre updated successfully."} )
+      redirect_to("/genre_lists/#{the_genre.id}", { :notice => "Genre updated successfully."} )
     else
-      redirect_to("/genres/#{the_genre.id}", { :alert => the_genre.errors.full_messages.to_sentence })
+      redirect_to("/genre_lists/#{the_genre.id}", { :alert => the_genre.errors.full_messages.to_sentence })
     end
   end
 

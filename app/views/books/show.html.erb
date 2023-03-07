@@ -84,16 +84,31 @@
         Publication Date
       </dt>
       <dd>
-        <%= @the_book.publication_date %>
+        <%= @the_book.publication_date.strftime("%B %d, %Y") %>
       </dd>
 
       <dt>
         Genres 
       </dt>
       <dd>
-        <% @the_book.genres.each do |a_genre| %>
-            <li> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </li>
-        <% end %>
+          <% @the_book.genres.each do |a_genre| %>
+              <li> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </li>
+          <% end %>
+
+          <form action="/insert_genre" method="post">
+            <input type="hidden" id="book_id" name="query_book_id" value="<%= @the_book.id%>"> 
+
+            <select id="genre_box" name="query_genre">
+              <option> Add a new genre </option> 
+              <% GenreList.all.order(:genre_name).each do |a_genre| %>
+                <option value="<%= a_genre.id %>">
+                  <%= a_genre.genre_name%> 
+                </option>
+              <% end %>
+            </select>
+
+            <button> Add genre </button>
+          </form>
       </dd>
     </dl>
   </div>

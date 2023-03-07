@@ -28,25 +28,6 @@ Rails.application.routes.draw do
   
   # SIGN OUT        
   get("/user_sign_out", { :controller => "user_authentication", :action => "destroy_cookies" })
-             
-  #------------------------------
-
-  # Routes for the Genre resource:
-
-  # CREATE
-  post("/insert_genre", { :controller => "genres", :action => "create" })
-          
-  # READ
-  get("/genres", { :controller => "genres", :action => "index" })
-  
-  get("/genres/:path_id", { :controller => "genres", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_genre/:path_id", { :controller => "genres", :action => "update" })
-  
-  # DELETE
-  get("/delete_genre/:path_id", { :controller => "genres", :action => "destroy" })
 
   #------------------------------
   
@@ -144,6 +125,25 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_genre_list/:path_id", { :controller => "genre_lists", :action => "destroy" })
+
+  #------------------------------
+
+  # Routes for the Genre resource:
+
+  # CREATE
+  post("/insert_genre", { :controller => "genres", :action => "create" })
+          
+  # READ
+  get("/genres", { :controller => "genres", :action => "index" })
+  
+  get("/genres/:path_id", { :controller => "genres", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_genre/:path_id", { :controller => "genres", :action => "update" })
+  
+  # DELETE
+  get("/delete_genre/:path_id", { :controller => "genres", :action => "destroy" })
 
   #------------------------------
 
