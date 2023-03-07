@@ -13,15 +13,26 @@
 
       <div> 
         <% current_user_tbr = Tbr.where({ :user_id => session[:user_id], :book_id => @the_book.id }).at(0) %>
+        <% current_user_completed = Completed.where({ :user_id => session[:user_id], :book_id => @the_book.id }).at(0) %>
 
-        <% if current_user_tbr == nil %> 
-          <form action="/insert_tbr" method="post"> 
-            <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
-            <button> Add to TBR </button> 
-          </form>
-        
+        <% if current_user_completed != nil %> 
+          <a href="/delete_completed/<%=current_user_completed.id %>"> Remove from Completed Shelf </a> 
+
         <% elsif current_user_tbr != nil %>
           <a href="/delete_tbr/<%=current_user_tbr.id %>"> Remove from TBR </a> 
+
+        <% else %>
+          <form action="/insert_tbr" method="post"> 
+            <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
+            <input type="hidden" name="query_user_id" value="<%=session[:user_id]%>">
+            <button> Add to TBR </button> 
+          </form> 
+
+          <form action="/insert_completed" method="post"> 
+            <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
+            <input type="hidden" name="query_user_id" value="<%=session[:user_id]%>">
+            <button> Already Completed </button> 
+          </form>
         
         <% end %>
       </div>
