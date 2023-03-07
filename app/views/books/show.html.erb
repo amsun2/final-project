@@ -59,8 +59,12 @@
         <% rating_count = 0 %>
         <% @the_book.reviews.each do |a_review| %>
           <% rating = a_review.rating %> 
-          <% rating_sum = rating_sum + rating %>
-          <% rating_count = rating_count + 1 %>
+            <% if rating == nil %>
+              No ratings yet :(
+            <% else %>
+              <% rating_sum = rating_sum + rating %>
+              <% rating_count = rating_count + 1 %>
+            <% end %>
         <% end %>
         <% if rating_count == 0 %>
           No ratings yet :(
