@@ -1,6 +1,6 @@
 class TbrsController < ApplicationController
   def index
-    matching_tbrs = Tbr.all
+    matching_tbrs = Tbr.where({ :user_id => session[:user_id] })
 
     @list_of_tbrs = matching_tbrs.order({ :created_at => :desc })
 

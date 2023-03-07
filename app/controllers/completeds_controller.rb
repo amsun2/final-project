@@ -1,6 +1,6 @@
 class CompletedsController < ApplicationController
   def index
-    matching_completeds = Completed.all
+    matching_completeds = Completed.where({ :user_id => session[:user_id] })
 
     @list_of_completeds = matching_completeds.order({ :created_at => :desc })
 

@@ -4,7 +4,7 @@
 
 <ul>
   <li> <a href="/edit_user_profile"> Update account </a> </li>
-  <li> <a href="/cancel_user_account"> Delete account </a> </li> 
+  <li> <a href="/user_sign_out"> Sign out </a> </li>
 </ul>
 
 <hr>
@@ -23,7 +23,7 @@
     <th> Remove from TBR </th> 
     <th> Completed </th> 
 
-  <% @user.tbrs.each do |a_TBR| %>
+  <% @user.tbrs.where(user_id: @user.id).each do |a_TBR| %>
     <% book_id = a_TBR.book.id%>
     <% if @user.completeds.where(book_id: book_id).length() == 0 %>
       <tr>
@@ -136,6 +136,40 @@
   <% end %>
 
 </table>
+
+<div>
+  <div>
+    <h2>
+      Add book to Completed Shelf 
+    </h2>
+
+    <form action="/insert_completed" method="post">
+      <div>
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%@user.id%>">
+      </div>
+
+      <div>
+        <label for="book_id_box">
+          Book
+        </label>
+
+        <select id="book_id_box" name ="query_book_id"> 
+          <% Book.all.order(:title).each do |a_book| %>
+            <% if Completed.where(user_id: @user.id, book_id: a_book.id).length == 0 && Tbr.where(user_id: @user.id, book_id: a_book.id).length==0 %>
+              <option value="<%= a_book.id%>"> 
+                <%= a_book.title %> (<%= a_book.author.name %>)
+              </option >
+            <% end %>
+          <% end %>
+        </select>
+      </div>
+
+      <button>
+        Add to TBR
+      </button>
+    </form>
+  </div>
+</div>
 
 <hr>
 

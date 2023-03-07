@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    matching_reviews = Review.all
+    matching_reviews = Review.where({ :user_id => session[:user_id] })
 
     @list_of_reviews = matching_reviews.order({ :created_at => :desc })
 
