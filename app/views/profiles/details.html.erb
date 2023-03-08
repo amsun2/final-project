@@ -1,85 +1,82 @@
-<h1 class="display-1" > Welcome <%= @user.username %>!! </h1> 
-
-
 <hr>
 
-<div>
-  <a class="btn btn-primary" href="/authors"> Browse by author </a> </li>
-  <a class="btn btn-primary" href="/books"> Browse by book </a> </li>
-  <a class="btn btn-primary" href="/genre_lists"> Browse by genre </a> 
+<div class="text-center">
+  <h1 class="display-1" > Welcome <%= @user.username %>!! </h1> 
 </div>
 
 <hr>
 
-<h2> My TBR Shelf </h2> 
+<div class="text-center">
+  <h2> My TBR Shelf </h2>  
 
-<div class="table-responsive">
-  <table class="table table-hover align-middle">
-    <thead>
-      <tr> 
-        <th scope="col"> Status </th>
-        <th scope="col"> Title </th>
-        <th scope="col"> </th> 
-        <th scope="col"> Author </th>
-        <th scope="col"> Publication Year </th>
-        <th scope="col"> Genre </th>
-        <th scope="col"> Shelf Life </th>
-        <th scope="col"> </th> 
-        <th scope="col"> </th> 
-      </tr>
-    </thead>
-    <tbody>
-    <% @user.tbrs.where(user_id: @user.id).each do |a_TBR| %>
-      <% book_id = a_TBR.book.id%>
-      <% if @user.completeds.where(book_id: book_id).length() == 0 %>
-        <tr>
-          <td> 
-            <div class="dropdown">  
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      Select status
-              </a>
-
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item"> Currently Reading </a></li>
-                <li><a class="dropdown-item" href="#"> On Shelf </a></li>
-              </ul>
-            </div>
-          </td>
-          <td> <img src="<%= a_TBR.book.cover %>" class="img-thumbnail"> </td> 
-          <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
-          <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 
-          <td> <%= a_TBR.book.publication_date.year() %> </td> 
-          <td> 
-            <ul class="list-group">
-              <% a_TBR.book.genres.each do |a_genre| %>
-                <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
-              <% end %>
-            </ul>
-          </td>
-          <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
-          <td>        
-          <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
-          <td>  
-              <form action="/move_to_completed/<%=a_TBR.id%>" method="post"> 
-                <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
-                <input type="hidden" name="query_user_id" value="<%=@user.id%>"> 
-                <button class="btn btn-success"> Read! </button> 
-              </form>
-            <% end %>
-          </td> 
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr> 
+          <th scope="col"> Status </th>
+          <th scope="col"> Title </th>
+          <th scope="col"> </th> 
+          <th scope="col"> Author </th>
+          <th scope="col"> Publication Year </th>
+          <th scope="col"> Genre </th>
+          <th scope="col"> Shelf Life </th>
+          <th scope="col"> </th> 
+          <th scope="col"> </th> 
         </tr>
-    <% end %>
-  </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+      <% @user.tbrs.where(user_id: @user.id).each do |a_TBR| %>
+        <% book_id = a_TBR.book.id%>
+        <% if @user.completeds.where(book_id: book_id).length() == 0 %>
+          <tr>
+            <td> 
+              <div class="dropdown">  
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select status
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item"> Currently Reading </a></li>
+                  <li><a class="dropdown-item" href="#"> On Shelf </a></li>
+                </ul>
+              </div>
+            </td>
+            <td> <img src="<%= a_TBR.book.cover %>" class="img-thumbnail"> </td> 
+            <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
+            <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 
+            <td> <%= a_TBR.book.publication_date.year() %> </td> 
+            <td> 
+              <ul class="list-group">
+                <% a_TBR.book.genres.each do |a_genre| %>
+                  <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
+                <% end %>
+              </ul>
+            </td>
+            <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
+            <td>        
+            <a href="/delete_tbr/<%=a_TBR.id%>"> Remove </td>
+            <td>  
+                <form action="/move_to_completed/<%=a_TBR.id%>" method="post"> 
+                  <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
+                  <input type="hidden" name="query_user_id" value="<%=@user.id%>"> 
+                  <button class="btn btn-success"> Completed! </button> 
+                </form>
+              <% end %>
+            </td> 
+          </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+</div> 
 
 <hr>
 
-<div>
+<div class="text-center">
   <div>
-    <h2>
+    <h4>
       Add book to TBR
-    </h2>
+    </h4>
 
     <form action="/insert_tbr" method="post">
       <div>
@@ -107,72 +104,74 @@
 
 <hr>
 
-<h2> Completed Books </h2>
+<div class="text-center">
+  <h2> Completed Books </h2>
 
-<div class="table-responsive">
-  <table class="table table-hover align-middle">
-    <thead>
-      <tr> 
-        <th scope="col"> Title </th>
-        <th scope="col"> </th> 
-        <th scope="col"> Author </th>
-        <th scope="col"> My Rating </th>
-        <th scope="col"> My Review </th>
-        <th scope="col"> Time Completed </th>
-        <th scope="col"> </th>
-        <th scope="col"> </th> 
-      </tr>
-    </thead>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr> 
+          <th scope="col"> Title </th>
+          <th scope="col"> </th> 
+          <th scope="col"> Author </th>
+          <th scope="col"> My Rating </th>
+          <th scope="col"> My Review </th>
+          <th scope="col"> Time Completed </th>
+          <th scope="col"> </th>
+          <th scope="col"> </th> 
+        </tr>
+      </thead>
 
-    <tbody>
-      <% @user.completeds.each do |a_book| %>
-      <tr>
-        <td> <img src="<%=a_book.book.cover%>" class="img-thumbnail"> </td>
-        <td> <a href="/books/<%=a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
-        <td> <a href="/authors/<%= a_book.book.author.id %>"> <%= a_book.book.author.name %> </a>  </td> 
-        <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
-                Have not rated
-              <% else %>
-                <%= a_book.book.reviews.where(user_id: @user.id).at(0).rating %> 
-              <% end %>
-        </td>  
-        <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
-                  <form action="/insert_review" method="post"> 
-                      <input type="hidden" name="query_book_id" value="<%=a_book.book.id%>">
-                      <input type="hidden" name="query_user_id" value="<%=@user.id%>">
-                      <label for="rating_box"> Rating (out of 5.0) </label> 
-                      <input type="text" id="rating_box" name="query_rating">
-                      <label for="commentary_box">
-                        Commentary
-                      </label>
-                      <textarea class="form-control" id="commentary_box" name="query_commentary" rows="3"></textarea>
-                      <button class="btn btn-outline-dark"> Add review </button>
-                  </form>
+      <tbody>
+        <% @user.completeds.each do |a_book| %>
+        <tr>
+          <td> <img src="<%=a_book.book.cover%>" class="img-thumbnail"> </td>
+          <td> <a href="/books/<%=a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
+          <td> <a href="/authors/<%= a_book.book.author.id %>"> <%= a_book.book.author.name %> </a>  </td> 
+          <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
+                  Have not rated
+                <% else %>
+                  <%= a_book.book.reviews.where(user_id: @user.id).at(0).rating %> 
+                <% end %>
+          </td>  
+          <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
+                    <form action="/insert_review" method="post"> 
+                        <input type="hidden" name="query_book_id" value="<%=a_book.book.id%>">
+                        <input type="hidden" name="query_user_id" value="<%=@user.id%>">
+                        <label for="rating_box"> Rating (out of 5.0) </label> 
+                        <input type="text" id="rating_box" name="query_rating">
+                        <label for="commentary_box">
+                          Commentary
+                        </label>
+                        <textarea class="form-control" id="commentary_box" name="query_commentary" rows="3"></textarea>
+                        <button class="btn btn-outline-dark"> Add review </button>
+                    </form>
 
-              <% else %>
-                <%= a_book.book.reviews.where(user_id: @user.id).at(0).commentary %> 
-              <% end %>
-        </td>
-        <td> <%= time_ago_in_words(a_book.created_at) %> ago
-        <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
-                
-              <% else %>
-                <a href="/reviews/<%=a_book.book.reviews.where(user_id: @user.id).at(0).id %>"> Update review </a> 
-              <% end %>
-        </td> 
-        <td> <a href="/delete_completed/<%= a_book.id %>"> Remove from shelf </a> 
-        </td> 
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+                <% else %>
+                  <%= a_book.book.reviews.where(user_id: @user.id).at(0).commentary %> 
+                <% end %>
+          </td>
+          <td> <%= time_ago_in_words(a_book.created_at) %> ago
+          <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
+                  
+                <% else %>
+                  <a href="/reviews/<%=a_book.book.reviews.where(user_id: @user.id).at(0).id %>"> Update review </a> 
+                <% end %>
+          </td> 
+          <td> <a href="/delete_completed/<%= a_book.id %>"> Remove from shelf </a> 
+          </td> 
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<div>
+<div class="text-center">
   <div>
-    <h2>
+    <h4>
       Add book to Completed Shelf 
-    </h2>
+    </h4>
 
     <form action="/insert_completed" method="post">
       <div>
@@ -200,12 +199,14 @@
 
 <hr>
 
-<h2> Check out these highly-rated books! </h2> 
+<div class="text-center">
+  <h2> Check out these highly-rated books! </h2> 
 
-<ul class="list-group"> 
-  <% Review.where(rating: 3.5..).each do |a_review| %> 
-    <% if Completed.where(user_id: @user.id, book_id: a_review.book.id).length==0 && Tbr.where(user_id: @user.id, book_id: a_review.book.id).length==0 %>
-      <li class="list-group-item"> <a href="/books/<%=a_review.book.id%>"> <%= a_review.book.title %> (<%=a_review.book.author.name%>) </a> </li>
+  <ul class="list-group"> 
+    <% Review.where(rating: 3.5..).each do |a_review| %> 
+      <% if Completed.where(user_id: @user.id, book_id: a_review.book.id).length==0 && Tbr.where(user_id: @user.id, book_id: a_review.book.id).length==0 %>
+        <li class="list-group-item"> <a href="/books/<%=a_review.book.id%>"> <%= a_review.book.title %> (<%=a_review.book.author.name%>) </a> </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul> 
+  </ul> 
+</div>
