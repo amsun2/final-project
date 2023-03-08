@@ -24,8 +24,8 @@
         <th scope="col"> Publication Year </th>
         <th scope="col"> Genre </th>
         <th scope="col"> Shelf Life </th>
-        <th scope="col"> Remove from TBR </th> 
-        <th scope="col"> Completed </th> 
+        <th scope="col"> </th> 
+        <th scope="col"> </th> 
       </tr>
     </thead>
     <tbody>
@@ -63,7 +63,7 @@
               <form action="/move_to_completed/<%=a_TBR.id%>" method="post"> 
                 <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
                 <input type="hidden" name="query_user_id" value="<%=@user.id%>"> 
-                <button> Move to Completed Shelf </button> 
+                <button type="button" class="btn btn-success"> Read! </button> 
               </form>
             <% end %>
           </td> 
@@ -87,10 +87,6 @@
       </div>
 
       <div>
-        <label for="book_id_box">
-          Book
-        </label>
-
         <select id="book_id_box" name ="query_book_id"> 
           <% Book.all.order(:title).each do |a_book| %>
             <% if Completed.where(user_id: @user.id, book_id: a_book.id).length == 0 && Tbr.where(user_id: @user.id, book_id: a_book.id).length==0 %>
@@ -101,8 +97,8 @@
           <% end %>
         </select>
       </div>
-
-      <button>
+      
+      <button type="button" class="btn btn-outline-dark">
         Add to TBR
       </button>
     </form>
@@ -150,7 +146,7 @@
                         Commentary
                       </label>
                       <textarea id="commentary_box" name="query_commentary" rows="3"></textarea>
-                      <button> Add review </button>
+                      <button type="button" class="btn btn-outline-dark"> Add review </button>
                   </form>
 
               <% else %>
@@ -184,10 +180,6 @@
       </div>
 
       <div>
-        <label for="book_id_box">
-          Book
-        </label>
-
         <select id="book_id_box" name ="query_book_id"> 
           <% Book.all.order(:title).each do |a_book| %>
             <% if Completed.where(user_id: @user.id, book_id: a_book.id).length == 0 && Tbr.where(user_id: @user.id, book_id: a_book.id).length==0 %>
@@ -199,7 +191,7 @@
         </select>
       </div>
 
-      <button>
+      <button type="button" class="btn btn-outline-dark">
         Add to shelf
       </button>
     </form>
@@ -217,10 +209,3 @@
     <% end %>
   <% end %>
 </ul> 
-
-<hr> 
-
-<ul>
-  <li> <a href="/edit_user_profile"> Update account </a> </li>
-  <li> <a href="/user_sign_out"> Sign out </a> </li>
-</ul>
