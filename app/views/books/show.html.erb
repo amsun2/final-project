@@ -159,7 +159,11 @@
       </div>
 
       <div>
-        <input type="hidden" id="author_box" name="query_author_id" value="<%=@the_book.author.id%>">
+        <label for="author_box">
+          Author 
+        </label>
+
+        <input type="text" id="author_box" name="query_author_id" value="<%=@the_book.author.id%>">
       </div>
 
       <div>
