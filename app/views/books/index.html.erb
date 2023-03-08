@@ -1,3 +1,5 @@
+<hr>
+
 <div>
   <div>
     <h1>
@@ -8,77 +10,67 @@
 
 <hr>
 
-<hr>
-<div>
-  <div>
-    <table border="1">
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead>
       <tr>
-        <th>
+        <th scope="col">
           Title
         </th>
 
-        <th>
-          
+        <th scope="col">
+
         </th>
 
-        <th>
+        <th scope="col">
           Author
         </th>
 
-        <th>
-          Synoposis
+        <th scope="col">
+          Publication Year
         </th>
 
-        <th>
-          Publication year
+        <th scope="col">
         </th>
-
-        <th> 
-        </th> 
-
       </tr>
-
+    </thead>
+    <tbody>
       <% @list_of_books.each do |a_book| %>
-      <tr>
-        <td>
-          <img src="<%= a_book.cover %>">
-        </td>
+        <tr>
+          <td>
+            <img src="<%= a_book.cover %>" class="img-thumbnail">
+          </td>
 
-        <td>
-          <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> 
-        </td>
+          <td>
+            <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a>
+          </td>
 
-        <td>
-          <a href="/authors/<%=a_book.author.id%>"> <%= a_book.author.name %> </a> 
-        </td>
+          <td>
+            <a href="/authors/<%=a_book.author.id%>"> <%= a_book.author.name %> </a>
+          </td>
 
-        <td>
-          <%= a_book.synoposis %>
-        </td>
+          <td>
+            <%= a_book.publication_date.year() %>
+          </td>
 
-        <td>
-          <%= a_book.publication_date.year() %>
-        </td>
-
-        <td> 
-          <% if a_book.completeds.where({book_id: a_book.id, user_id: session[:user_id]}).at(0) != nil %>
-            <% status = "On Completed Shelf" %>
-            <%= status %>
-          <% elsif a_book.tbrs.where({book_id: a_book.id, user_id: session[:user_id]}).at(0) != nil %> 
-            <% status = "On TBR Shelf" %>
-            <%= status %>
-          <% else %> 
-            <form action="/insert_tbr" method="post"> 
-              <input type="hidden" name="query_book_id" value="<%=a_book.id%>">
-              <button> Add to TBR </button> 
-            </form>
-          <% end %>
-        </td> 
-
-      </tr>
+          <td>
+            <% if a_book.completeds.where({book_id: a_book.id, user_id: session[:user_id]}).at(0) != nil %>
+              <% status = "On Completed Shelf" %>
+              <%= status %>
+            <% elsif a_book.tbrs.where({book_id: a_book.id, user_id: session[:user_id]}).at(0) != nil %>
+              <% status = "On TBR Shelf" %>
+              <%= status %>
+            <% else %>
+              <form action="/insert_tbr" method="post">
+                <input type="hidden" name="query_book_id" value="<%=a_book.id%>">
+                <button type="button" class="btn btn-outline-primary"> Add to TBR </button>
+              </form>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </table>
-  </div>
+    </tbody>
+  </table>
 </div>
 
 <hr>
@@ -111,15 +103,15 @@
           Author 
         </label>
 
-        <select id="author_box" name ="query_author_id"> 
+        <select id="author_box" name ="query_author_id">
           <option> Select an author </option>
           <% Author.all.order(:name).each do |an_author| %>
-              <option value="<%= an_author.id%>"> 
-                <%= an_author.name %>
-              </option >
+            <option value="<%= an_author.id%>">
+              <%= an_author.name %>
+            </option >
           <% end %>
         </select>
-        
+
         <a href="/authors"> Don't see the author? </a>
 
       </div>
@@ -140,7 +132,7 @@
         <textarea id="synopsis_box" name="query_synoposis"rows="3"></textarea>
       </div>
 
-      <button>
+      <button type="button" class="btn btn-outline-dark">
         Add book
       </button>
     </form>
