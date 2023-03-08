@@ -1,52 +1,43 @@
-<div>
-  <div>
-    <h1>
-      <%= @the_genre_list.genre_name %> books
-    </h1>
+<hr> 
 
-    <div>
-      <div>
-        <a href="/genre_lists">
-          Browse by genre
-        </a>
-      </div>
-    </div>
+<h1>
+  <%= @the_genre_list.genre_name %> Books
+</h1>
 
 <hr>
 
-<table border="1">
-  <tr>
-    <th> Title </th>
-    <th> Author </th> 
-    <th> Synopsis </th> 
-    <th> Publication Year </th> 
-    <th> Average Rating </th> 
-  <tr> 
-
-  <% @the_genre_list.genres_book_associations.each do |a_book| %>
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <tr>
+      <th> Title </th>
+      <th> </th>
+      <th> Author </th> 
+      <th> Synopsis </th> 
+      <th> Publication Year </th> 
+      <th> Average Rating </th> 
     <tr> 
-      <td> <a href="/books/<%= a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
-      <td> <a href="/authors/<%= a_book.book.author_id%>"> <%= a_book.book.author.name %> </a> </td> 
-      <td> <%= a_book.book.synoposis %> </td> 
-      <td> <%= a_book.book.publication_date.year() %> </td> 
-      <td> 
-        <% rating_sum = 0 %>
-        <% rating_count = 0 %>
-        <% a_book.book.reviews.each do |a_review| %>
-          <% rating = a_review.rating %> 
-          <% rating_sum = rating_sum + rating %>
-          <% rating_count = rating_count + 1 %>
-        <% end %>
-        <% if rating_count == 0 %>
-          No ratings yet 
-        <% else %>
-          <%= rating_sum / rating_count %> 
-        <% end %>
-      </td> 
-    </tr> 
-  <% end %>
 
-
-</table>
-
-<hr>
+    <% @the_genre_list.genres_book_associations.each do |a_book| %>
+      <tr> 
+        <td> <img src="<%= a_book.book.cover%>" class="img-thumbnail"> </td> 
+        <td> <a href="/books/<%= a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
+        <td> <a href="/authors/<%= a_book.book.author_id%>"> <%= a_book.book.author.name %> </a> </td> 
+        <td> <%= a_book.book.synoposis %> </td> 
+        <td> <%= a_book.book.publication_date.year() %> </td> 
+        <td> 
+          <% rating_sum = 0 %>
+          <% rating_count = 0 %>
+          <% a_book.book.reviews.each do |a_review| %>
+            <% rating = a_review.rating %> 
+            <% rating_sum = rating_sum + rating %>
+            <% rating_count = rating_count + 1 %>
+          <% end %>
+          <% if rating_count == 0 %>
+            No ratings yet 
+          <% else %>
+            <%= rating_sum / rating_count %> 
+          <% end %>
+        </td> 
+      </tr> 
+    <% end %>
+  </table>
