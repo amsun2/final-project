@@ -191,13 +191,12 @@
 <h2> Check out these highly-rated books! </h2> 
 
 <ul> 
-  <% Review.where(rating: 3.5...).each do |a_review| %> 
+  <% Review.where(rating: 3.5..).each do |a_review| %> 
     <% if Completed.where(user_id: @user.id, book_id: a_review.book.id).length==0 && Tbr.where(user_id: @user.id, book_id: a_review.book.id).length==0 %>
       <li> <a href="/books/<%=a_review.book.id%>"> <%= a_review.book.title %> (<%=a_review.book.author.name%>) </a> </li>
     <% end %>
   <% end %>
 </ul> 
-
 
 <hr> 
 
