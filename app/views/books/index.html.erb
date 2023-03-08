@@ -24,6 +24,10 @@
         </th>
 
         <th scope="col">
+          Synopsis
+        </th>
+
+        <th scope="col">
           Publication Year
         </th>
 
@@ -44,6 +48,10 @@
 
           <td>
             <a href="/authors/<%=a_book.author.id%>"> <%= a_book.author.name %> </a>
+          </td>
+
+          <td>
+            <%= a_book.synoposis %> 
           </td>
 
           <td>
@@ -118,7 +126,7 @@
           Publication Date 
         </label>
 
-        <input type="text" id="date_box" name="query_publication_date" placeholder="2018-12-31">
+        <input type="text" id="date_box" name="query_publication_date" placeholder="YYY-MM-DD">
       </div>
 
       <div>
@@ -126,7 +134,7 @@
           Synopsis 
         </label>
 
-        <textarea id="synopsis_box" name="query_synoposis"rows="3"></textarea>
+        <textarea id="synopsis_box" name="query_synoposis"rows="3">Type here...</textarea>
       </div>
 
       <button class="btn btn-outline-dark">
