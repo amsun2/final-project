@@ -103,7 +103,7 @@
               <option> Select a genre </option> 
               <% GenreList.order(:genre_name).each do |a_genre| %>
                 <option value="<%= a_genre.id %>">
-                  <%= a_genre.genre_name%> 
+                  <%= a_genre.genre_name %> 
                 </option>
               <% end %>
             </select>

@@ -20,13 +20,13 @@ class GenresController < ApplicationController
   def create
     the_genre = Genre.new
     the_genre.book_id = params.fetch("query_book_id")
-    the_genre.genre = params.fetch("query_genre")
+    the_genre.genre_id = params.fetch("query_genre")
 
     if the_genre.valid?
       the_genre.save
-      redirect_to("/genres", { :notice => "Genre created successfully." })
+      redirect_to("/", { :notice => "Genre created successfully." })
     else
-      redirect_to("/genres", { :alert => the_genre.errors.full_messages.to_sentence })
+      redirect_to("/", { :alert => the_genre.errors.full_messages.to_sentence })
     end
   end
 
@@ -35,7 +35,7 @@ class GenresController < ApplicationController
     the_genre = Genre.where({ :id => the_id }).at(0)
 
     the_genre.book_id = params.fetch("query_book_id")
-    the_genre.genre = params.fetch("query_genre")
+    the_genre.genre_id = params.fetch("query_genre")
 
     if the_genre.valid?
       the_genre.save
