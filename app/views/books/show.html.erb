@@ -1,154 +1,150 @@
-<div>
-  <div>
-    <h1>
-      <%= @the_book.title %> 
-    </h1>
+<hr>
 
-    <div>
-      <div>
-        <a href="/books">
-        Browse all books
-        </a>
-      </div>
+<div class="text-center">
+  <h1>
+    <%= @the_book.title %>
+  </h1>
 
-      <div> 
-        <% current_user_tbr = Tbr.where({ :user_id => session[:user_id], :book_id => @the_book.id }).at(0) %>
-        <% current_user_completed = Completed.where({ :user_id => session[:user_id], :book_id => @the_book.id }).at(0) %>
+  <dl>
+    <dd>
+      <img src="<%= @the_book.cover %>" class="rounded">
+    </dd>
 
-        <% if current_user_completed != nil %> 
-          <a href="/delete_completed/<%=current_user_completed.id %>"> Remove from Completed Shelf </a> 
+    <dt>
+      Author 
+    </dt>
+    <dd>
+      <a href="/authors/<%= @the_book.author_id %>"> <%= @the_book.author.name %> </a>
+    </dd>
 
-        <% elsif current_user_tbr != nil %>
-          <a href="/delete_tbr/<%=current_user_tbr.id %>"> Remove from TBR </a> 
-
+    <dt>
+      Average Rating
+    </dt>
+    <dd>
+      <% rating_sum = 0 %>
+      <% rating_count = 0 %>
+      <% @the_book.reviews.each do |a_review| %>
+        <% rating = a_review.rating %>
+        <% if rating == nil %>
+          No ratings yet 
         <% else %>
-          <form action="/insert_tbr" method="post"> 
-            <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
-            <input type="hidden" name="query_user_id" value="<%=session[:user_id]%>">
-            <button> Add to TBR </button> 
-          </form> 
-
-          <form action="/insert_completed" method="post"> 
-            <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
-            <input type="hidden" name="query_user_id" value="<%=session[:user_id]%>">
-            <button> Already Completed </button> 
-          </form>
-        
+          <% rating_sum = rating_sum + rating %>
+          <% rating_count = rating_count + 1 %>
         <% end %>
-      </div>
-    </div>
+      <% end %>
+      <% if rating_count == 0 %>
+        No ratings yet
+      <% else %>
+        <%= rating_sum / rating_count %>
+      <% end %>
+    </dd>
 
+    <dt>
+      Publication Date
+    </dt>
+    <dd>
+      <%= @the_book.publication_date.strftime("%B %d, %Y") %>
+    </dd>
 
-    <dl>
-      <dd>
-        <img src="<%= @the_book.cover %>">
-      </dd>
+    <dt>
+      Genres 
+    </dt>
+    <dd>
+      <% @the_book.genres.each do |a_genre| %>
+        <li> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </li>
+      <% end %>
 
-      <dt>
-        Author 
-      </dt>
-      <dd>
-        <a href="/authors/<%= @the_book.author_id %>"> <%= @the_book.author.name %> </a>
-      </dd>
+      <form action="/insert_genre" method="post">
+        <input type="hidden" id="book_id" name="query_book_id" value="<%= @the_book.id%>">
 
-      <dt>
-        Average Rating
-      </dt> 
-      <dd> 
-        <% rating_sum = 0 %>
-        <% rating_count = 0 %>
-        <% @the_book.reviews.each do |a_review| %>
-          <% rating = a_review.rating %> 
-            <% if rating == nil %>
-              No ratings yet :(
-            <% else %>
-              <% rating_sum = rating_sum + rating %>
-              <% rating_count = rating_count + 1 %>
-            <% end %>
-        <% end %>
-        <% if rating_count == 0 %>
-          No ratings yet :(
-        <% else %>
-          <%= rating_sum / rating_count %> 
-        <% end %>
-      </dd>
-
-      <dt>
-        Synopsis
-      </dt>
-      <dd>
-        <%= @the_book.synoposis %>
-      </dd>
-
-      <dt>
-        Publication Date
-      </dt>
-      <dd>
-        <%= @the_book.publication_date.strftime("%B %d, %Y") %>
-      </dd>
-
-      <dt>
-        Genres 
-      </dt>
-      <dd>
-          <% @the_book.genres.each do |a_genre| %>
-              <li> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </li>
+        <label for="genre_box"> </label>
+        <select id="genre_box" name="query_genre">
+          <option> Select a genre </option>
+          <% GenreList.order(:genre_name).each do |a_genre| %>
+            <option value="<%= a_genre.id %>">
+              <%= a_genre.genre_name %>
+            </option>
           <% end %>
+        </select>
 
-          <form action="/insert_genre" method="post">
-            <input type="hidden" id="book_id" name="query_book_id" value="<%= @the_book.id%>"> 
+        <button type="button" class="btn btn-outline-dark"> Add genre </button>
+      </form>
+    </dd>
 
-            <label for="genre_box"> </label>
-            <select id="genre_box" name="query_genre">
-              <option> Select a genre </option> 
-              <% GenreList.order(:genre_name).each do |a_genre| %>
-                <option value="<%= a_genre.id %>">
-                  <%= a_genre.genre_name %> 
-                </option>
-              <% end %>
-            </select>
+    <dt>
+      Synopsis
+    </dt>
+    <dd>
+      <%= @the_book.synoposis %>
+    </dd>
+  </dl>
+</div>
 
-            <button> Add genre </button>
-          </form>
-      </dd>
-    </dl>
-  </div>
+<div class="text-center">
+  <% current_user_tbr = Tbr.where({ :user_id => session[:user_id], :book_id => @the_book.id }).at(0) %>
+  <% current_user_completed = Completed.where({ :user_id => session[:user_id], :book_id => @the_book.id }).at(0) %>
+
+  <% if current_user_completed != nil %>
+    <a href="/delete_completed/<%=current_user_completed.id %>"> Remove from Completed Shelf </a>
+
+  <% elsif current_user_tbr != nil %>
+    <a href="/delete_tbr/<%=current_user_tbr.id %>"> Remove from TBR </a>
+
+  <% else %>
+    <form action="/insert_tbr" method="post">
+      <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
+      <input type="hidden" name="query_user_id" value="<%=session[:user_id]%>">
+      <button> Add to TBR </button>
+    </form>
+
+    <form action="/insert_completed" method="post">
+      <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
+      <input type="hidden" name="query_user_id" value="<%=session[:user_id]%>">
+      <button> Already Completed </button>
+    </form>
+  <% end %>
 </div>
 
 <hr>
 
-<h2> Reviews </h2> 
+<h2> Reviews </h2>
 
-<table border="1">
-  <tr>
-    <th> User </th>
-    <th> Rating </th>
-    <th> Review </th> 
-    <th> Time Updated </th> 
-  <tr>
-  
-  <% @the_book.reviews.each do |a_review| %> 
-  <tr>
-    <td> <%= a_review.user.username %> </td> 
-    <td> <%= a_review.rating %> </td>
-    <td> <%= a_review.commentary %> </td>
-    <td> <%= time_ago_in_words(a_review.updated_at)%> ago
-  </tr> 
-  <%end %>
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th scope="col"> User </th>
+        <th scope="col"> Rating </th>
+        <th scope="col"> Review </th>
+        <th scope="col"> Time Updated </th>
+      </tr>
+    </thead>
 
-</table>
+    <tbody>
+      <tr>
+        <% @the_book.reviews.each do |a_review| %>
+          <td> <%= a_review.user.username %> </td>
+          <td> <%= a_review.rating %> </td>
+          <td> <%= a_review.commentary %> </td>
+          <td> <%= time_ago_in_words(a_review.updated_at)%> ago
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<hr>
+  <hr>
 
-<h2> Update Book </h2> 
+  <h2> Update Book </h2>
 
   <form action="/modify_book/<%=@the_book.id%>" method="post">
-     <div>
-        <label for="title_box">
-          Title 
-        </label>
+    <div>
+      <label for="title_box">
+        Title 
+      </label>
 
-        <input type="text" id="title_box" name="query_title" value="<%=@the_book.title%>"> 
+      <input type="text" id="title_box" name="query_title" value="<%=@the_book.title%>">
+    </div>
 
       <div>
         <label for="cover_box">
@@ -159,11 +155,7 @@
       </div>
 
       <div>
-        <label for="author_box">
-          Author 
-        </label>
-
-        <input type="text" id="author_box" name="query_author_id" value="<%=@the_book.author.id%>">
+        <input type="hidden" id="author_box" name="query_author_id" value="<%=@the_book.author.id%>">
       </div>
 
       <div>
@@ -179,9 +171,10 @@
           Synopsis 
         </label>
 
-        <textarea id="synopsis_box" name="query_synoposis"rows="3" value="<%=@the_book.synoposis%>"></textarea>
+        <textarea id="synopsis_box" name="query_synoposis"rows="3" value="<%=@the_book.synoposis%>"><%=@the_book.synoposis%></textarea>
       </div>
 
-      <button>
+      <button type="button" class="btn btn-outline-dark">
         Update book
       </button>
+</form>
