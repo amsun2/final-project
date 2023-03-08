@@ -2,7 +2,7 @@ class GenreListsController < ApplicationController
   def index
     matching_genre_lists = GenreList.all
 
-    @list_of_genre_lists = matching_genre_lists.order({ :created_at => :desc })
+    @list_of_genre_lists = matching_genre_lists.order({ :genre_name => :asc })
 
     render({ :template => "genre_lists/index.html.erb" })
   end

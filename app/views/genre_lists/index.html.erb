@@ -1,39 +1,37 @@
+<hr>
+
 <div>
-  <div>
-    <h1>
-      Browse by Genre
-    </h1>
-  </div>
+  <h1>
+    Browse by Genre
+  </h1>
 </div>
 
 <hr>
 
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          Genre 
-        </th>
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <tr>
+      <th>
+        Genre 
+      </th>
 
-        <th>
-          Number of books 
-        </th>
+      <th>
+        Number of books 
+      </th>
 
-        <th>
-        </th>
-      </tr>
+      <th>
+      </th>
+    </tr>
 
-      <% @list_of_genre_lists.each do |a_genre_list| %>
+    <% @list_of_genre_lists.each do |a_genre_list| %>
       <tr>
         <td>
           <%= a_genre_list.genre_name %>
         </td>
 
-        <td> 
+        <td>
           <%= a_genre_list.genres_book_associations.length() %>
-        </td> 
+        </td>
 
         <td>
           <a href="/genre_lists/<%= a_genre_list.id %>">
@@ -41,31 +39,24 @@
           </a>
         </td>
       </tr>
-      <% end %>
-    </table>
-  </div>
+    <% end %>
+  </table>
 </div>
 
 <hr>
 
 <div>
-  <div>
-    <h2>
-      Add a new genre
-    </h2>
+  <h2>
+    Add a new genre
+  </h2>
 
-    <form action="/insert_genre_list" method="post">
-      <div>
-        <label for="genre_name_box">
-          Genre name
-        </label>
+  <form action="/insert_genre_list" method="post">
+    <div>
+      <input type="text" id="genre_name_box" name="query_genre_name" placeholder="Type genre name here...">
+    </div>
 
-        <input type="text" id="genre_name_box" name="query_genre_name">
-      </div>
-
-      <button>
-        Add genre
-      </button>
-    </form>
-  </div>
+    <button type="button" class="btn btn-outline-dark">
+      Add genre
+    </button>
+  </form>
 </div>
