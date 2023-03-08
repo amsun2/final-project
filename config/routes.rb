@@ -105,6 +105,25 @@ Rails.application.routes.draw do
 
   #------------------------------
 
+  # Routes for the Completed resource:
+
+  # CREATE
+  post("/insert_completed", { :controller => "completeds", :action => "create" })
+          
+  # READ
+  get("/completeds", { :controller => "completeds", :action => "index" })
+  
+  get("/completeds/:path_id", { :controller => "completeds", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_completed/:path_id", { :controller => "completeds", :action => "update" })
+  
+  # DELETE
+  get("/delete_completed/:completed_id/:book_id/:user_id", { :controller => "completeds", :action => "destroy" })
+
+  #------------------------------
+
     # Routes for the Genre list resource:
 
   # CREATE
@@ -140,25 +159,6 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_genre/:path_id", { :controller => "genres", :action => "destroy" })
-
-  #------------------------------
-
-  # Routes for the Completed resource:
-
-  # CREATE
-  post("/insert_completed", { :controller => "completeds", :action => "create" })
-          
-  # READ
-  get("/completeds", { :controller => "completeds", :action => "index" })
-  
-  get("/completeds/:path_id", { :controller => "completeds", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_completed/:path_id", { :controller => "completeds", :action => "update" })
-  
-  # DELETE
-  get("/delete_completed/:path_id", { :controller => "completeds", :action => "destroy" })
 
   #------------------------------
 

@@ -46,11 +46,17 @@ class CompletedsController < ApplicationController
   end
 
   def destroy
-    the_id = params.fetch("path_id")
+    the_id = params.fetch("completed_id")
+    the_user = params.fetch("user_id")
+    the_book = params.fetch("book_id")
+
     the_completed = Completed.where({ :id => the_id }).at(0)
+    the_review = Review.where({ :user_id => the_user, :book_id => the_book}).at(0)
 
     the_completed.destroy
+    the_review.destroy
 
     redirect_to("/", { :notice => "Removed from shelf successfully."} )
   end
+
 end

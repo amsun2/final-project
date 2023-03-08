@@ -145,7 +145,7 @@
                   <a href="/reviews/<%=a_book.book.reviews.where(user_id: @user.id).at(0).id %>"> Update review </a> 
                 <% end %>
           </td> 
-          <td> <a href="/delete_completed/<%= a_book.id %>"> Remove from shelf </a> 
+          <td> <a href="/delete_completed/<%= a_book.id%>/<%= a_book.book_id%>/<%= a_book.user_id%>"> Remove from shelf </a> 
           </td> 
         </tr>
         <% end %>
