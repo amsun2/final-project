@@ -26,14 +26,16 @@
 
   <body>
 
-    <div class="text-center">
-      <a class="btn btn-primary" href="/"> My Shelf </a>
-      <a class="btn btn-outline-primary" href="/authors"> Browse by author </a>
-      <a class="btn btn-outline-primary" href="/books"> Browse by book </a> 
-      <a class="btn btn-outline-primary" href="/genre_lists"> Browse by genre </a> 
-      <a class="btn btn-secondary" href="/edit_user_profile"> Update account </a>
-      <a class="btn btn-secondary" href="/user_sign_out"> Sign out </a>
-    </div>
+    <% if session[:user_id] != nil %>
+      <div class="text-center">
+        <a class="btn btn-primary" href="/"> My Shelf </a>
+        <a class="btn btn-outline-primary" href="/authors"> Browse by author </a>
+        <a class="btn btn-outline-primary" href="/books"> Browse by book </a> 
+        <a class="btn btn-outline-primary" href="/genre_lists"> Browse by genre </a> 
+        <a class="btn btn-secondary" href="/edit_user_profile"> Update account </a>
+        <a class="btn btn-secondary" href="/user_sign_out"> Sign out </a>
+      </div>
+    <% end %>
 
     <%= yield %>
   </body>
