@@ -67,7 +67,7 @@
           <% end %>
         </select>
 
-        <button type="button" class="btn btn-outline-dark"> Add genre </button>
+        <button class="btn btn-outline-dark"> Add genre </button>
       </form>
     </dd>
 
@@ -94,13 +94,13 @@
     <form action="/insert_tbr" method="post">
       <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
       <input type="hidden" name="query_user_id" value="<%=session[:user_id]%>">
-      <button> Add to TBR </button>
+      <button class="btn btn-outline-success"> Add to TBR </button>
     </form>
 
     <form action="/insert_completed" method="post">
       <input type="hidden" name="query_book_id" value="<%=@the_book.id%>">
       <input type="hidden" name="query_user_id" value="<%=session[:user_id]%>">
-      <button> Already Completed </button>
+      <button class="btn btn-success"> Already Completed </button>
     </form>
   <% end %>
 </div>
@@ -174,7 +174,7 @@
         <textarea id="synopsis_box" name="query_synoposis"rows="3" value="<%=@the_book.synoposis%>"><%=@the_book.synoposis%></textarea>
       </div>
 
-      <button type="button" class="btn btn-outline-dark">
+      <button class="btn btn-outline-dark">
         Update book
       </button>
 </form>

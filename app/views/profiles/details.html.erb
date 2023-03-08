@@ -63,7 +63,7 @@
               <form action="/move_to_completed/<%=a_TBR.id%>" method="post"> 
                 <input type="hidden" name="query_book_id" value="<%=a_TBR.book_id%>">
                 <input type="hidden" name="query_user_id" value="<%=@user.id%>"> 
-                <button type="button" class="btn btn-success"> Read! </button> 
+                <button class="btn btn-success"> Read! </button> 
               </form>
             <% end %>
           </td> 
@@ -98,7 +98,7 @@
         </select>
       </div>
       
-      <button type="button" class="btn btn-outline-dark">
+      <button class="btn btn-outline-dark">
         Add to TBR
       </button>
     </form>
@@ -141,12 +141,12 @@
                       <input type="hidden" name="query_book_id" value="<%=a_book.book.id%>">
                       <input type="hidden" name="query_user_id" value="<%=@user.id%>">
                       <label for="rating_box"> Rating (out of 5.0) </label> 
-                      <input type="integer" id="rating_box" name="query_rating">
+                      <input type="text" id="rating_box" name="query_rating">
                       <label for="commentary_box">
                         Commentary
                       </label>
                       <textarea class="form-control" id="commentary_box" name="query_commentary" rows="3"></textarea>
-                      <button type="button" class="btn btn-outline-dark"> Add review </button>
+                      <button class="btn btn-outline-dark"> Add review </button>
                   </form>
 
               <% else %>
