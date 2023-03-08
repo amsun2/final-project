@@ -45,8 +45,6 @@ Rails.application.routes.draw do
   
   post("/modify_author/:path_id", { :controller => "authors", :action => "update" })
   
-  # DELETE
-  get("/delete_author/:path_id", { :controller => "authors", :action => "destroy" })
 
   #------------------------------
 
@@ -64,8 +62,6 @@ Rails.application.routes.draw do
   
   post("/modify_book/:path_id", { :controller => "books", :action => "update" })
   
-  # DELETE
-  get("/delete_book/:path_id", { :controller => "books", :action => "destroy" })
 
   #------------------------------
 
