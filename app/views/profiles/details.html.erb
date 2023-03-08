@@ -34,19 +34,27 @@
       <% if @user.completeds.where(book_id: book_id).length() == 0 %>
         <tr>
           <td> 
-            <select> 
-              <option> Currently Reading </option> 
-              <option> On Shelf </option> 
-            </select>
+            <div class="dropdown">  
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                      Select status
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item"> Currently Reading </a></li>
+                <li><a class="dropdown-item" href="#"> On Shelf </a></li>
+              </ul>
+            </div>
           </td>
           <td> <img src="<%= a_TBR.book.cover %>" class="img-thumbnail"> </td> 
           <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
           <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 
           <td> <%= a_TBR.book.publication_date.year() %> </td> 
           <td> 
-            <% a_TBR.book.genres.each do |a_genre| %>
-              <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
-            <% end %>
+            <ul class="list-group">
+              <% a_TBR.book.genres.each do |a_genre| %>
+                <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
+              <% end %>
+            </ul>
           </td>
           <td> <%= time_ago_in_words(a_TBR.created_at) %> on shelf </td> 
           <td>        
