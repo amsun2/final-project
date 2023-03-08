@@ -74,7 +74,7 @@
       </dd>
 
       <dt>
-        Synoposis
+        Synopsis
       </dt>
       <dd>
         <%= @the_book.synoposis %>
@@ -135,3 +135,51 @@
   <%end %>
 
 </table>
+
+<hr>
+
+<h2> Update Book </h2> 
+
+  <form action="/modify_book/<%=@the_book.id%>" method="post">
+     <div>
+        <label for="title_box">
+          Title 
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%=@the_book.title%>"> 
+
+      <div>
+        <label for="cover_box">
+          Link to cover image 
+        </label>
+
+        <input type="text" id="cover_box" name="query_cover" value="<%=@the_book.cover%>">
+      </div>
+
+      <div>
+        <label for="author_box">
+          Author 
+        </label>
+
+        <input type="text" id="author_box" name="query_author_id" value="<%=@the_book.author.id%>">
+      </div>
+
+      <div>
+        <label for="date_box">
+          Publication Date 
+        </label>
+
+        <input type="text" id="date_box" name="query_publication_date" value="<%=@the_book.publication_date%>">
+      </div>
+
+      <div>
+        <label for="synopsis_box">
+          Synopsis 
+        </label>
+
+        <textarea id="synopsis_box" name="query_synoposis"rows="3" value="<%=@the_book.synoposis%>"></textarea>
+      </div>
+
+      <button>
+        Update book
+      </button>
