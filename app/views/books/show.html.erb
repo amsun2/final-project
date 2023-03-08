@@ -122,6 +122,7 @@
 <table border="1">
   <tr>
     <th> User </th>
+    <th> Rating </th>
     <th> Review </th> 
     <th> Time Updated </th> 
   <tr>
@@ -129,6 +130,7 @@
   <% @the_book.reviews.each do |a_review| %> 
   <tr>
     <td> <%= a_review.user.username %> </td> 
+    <td> <%= a_review.rating %> </td>
     <td> <%= a_review.commentary %> </td>
     <td> <%= time_ago_in_words(a_review.updated_at)%> ago
   </tr> 
@@ -157,11 +159,7 @@
       </div>
 
       <div>
-        <label for="author_box">
-          Author 
-        </label>
-
-        <input type="text" id="author_box" name="query_author_id" value="<%=@the_book.author.id%>">
+        <input type="hidden" id="author_box" name="query_author_id" value="<%=@the_book.author.id%>">
       </div>
 
       <div>
