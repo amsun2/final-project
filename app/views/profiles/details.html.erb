@@ -17,7 +17,7 @@
           <th scope="col"> Title </th>
           <th scope="col"> </th> 
           <th scope="col"> Author </th>
-          <th scope="col"> Publication Year </th>
+          <th scope="col"> Year </th>
           <th scope="col"> Genre </th>
           <th scope="col"> Shelf Life </th>
           <th scope="col"> </th> 
@@ -30,16 +30,11 @@
         <% if @user.completeds.where(book_id: book_id).length() == 0 %>
           <tr>
             <td> 
-              <div class="dropdown">  
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        Select status
-                </a>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item"> Currently Reading </a></li>
-                  <li><a class="dropdown-item" href="#"> On Shelf </a></li>
-                </ul>
-              </div>
+              <select>
+                <option> Select status </option>
+                <option> Currently Reading </option>
+                <option> On Shelf </option>
+              </select>
             </td>
             <td> <img src="<%= a_TBR.book.cover %>" class="img-thumbnail"> </td> 
             <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
@@ -48,7 +43,7 @@
             <td> 
               <ul class="list-group">
                 <% a_TBR.book.genres.each do |a_genre| %>
-                  <li> <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a> </li>
+                  <a href="/genre_lists/<%=a_genre.id%>"> <%= a_genre.genre.genre_name %> </a>
                 <% end %>
               </ul>
             </td>
