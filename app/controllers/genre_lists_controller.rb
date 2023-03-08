@@ -23,7 +23,7 @@ class GenreListsController < ApplicationController
 
     if the_genre_list.valid?
       the_genre_list.save
-      redirect_to("/genre_lists", { :notice => "Genre list created successfully." })
+      redirect_to("/genre_lists", { :notice => "Genre created successfully." })
     else
       redirect_to("/genre_lists", { :alert => the_genre_list.errors.full_messages.to_sentence })
     end
@@ -49,6 +49,6 @@ class GenreListsController < ApplicationController
 
     the_genre_list.destroy
 
-    redirect_to("/genre_lists", { :notice => "Genre list deleted successfully."} )
+    redirect_to("/genre_lists", { :notice => "Genre deleted successfully."} )
   end
 end

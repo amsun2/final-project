@@ -13,7 +13,6 @@
     <table class="table table-hover align-middle">
       <thead>
         <tr> 
-          <th scope="col"> Status </th>
           <th scope="col"> Title </th>
           <th scope="col"> </th> 
           <th scope="col"> Author </th>
@@ -29,13 +28,6 @@
         <% book_id = a_TBR.book.id%>
         <% if @user.completeds.where(book_id: book_id).length() == 0 %>
           <tr>
-            <td> 
-              <select>
-                <option> Select status </option>
-                <option> Currently Reading </option>
-                <option> On Shelf </option>
-              </select>
-            </td>
             <td> <img src="<%= a_TBR.book.cover %>" class="img-thumbnail"> </td> 
             <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
             <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 

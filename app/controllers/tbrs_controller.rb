@@ -24,7 +24,7 @@ class TbrsController < ApplicationController
 
     if the_tbr.valid?
       the_tbr.save
-      redirect_to("/", { :notice => "Tbr created successfully." })
+      redirect_to("/", { :notice => "Book added to shelf." })
     else
       redirect_to("/tbrs", { :alert => the_tbr.errors.full_messages.to_sentence })
     end
@@ -39,7 +39,7 @@ class TbrsController < ApplicationController
 
     if the_tbr.valid?
       the_tbr.save
-      redirect_to("/tbrs/#{the_tbr.id}", { :notice => "Tbr updated successfully."} )
+      redirect_to("/tbrs/#{the_tbr.id}", { :notice => "Shelf updated successfully."} )
     else
       redirect_to("/tbrs/#{the_tbr.id}", { :alert => the_tbr.errors.full_messages.to_sentence })
     end
