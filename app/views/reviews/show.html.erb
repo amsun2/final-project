@@ -1,94 +1,80 @@
+<hr>
+
+<h1>
+  My "<%= @the_review.book.title %>" Review
+</h1>
+
 <div>
-  <div>
-    <h1>
-      My <%= @the_review.book.title %> Review
-    </h1>
+  <a href="/delete_review/<%= @the_review.id %>">
+    Delete review
+  </a>
 
+  <dl>
+    <dt>
+      Rating
+    </dt>
+    <dd>
+      <%= @the_review.rating %>
+    </dd>
+
+    <dt>
+      Commentary
+    </dt>
+    <dd>
+      <%= @the_review.commentary %>
+    </dd>
+
+    <dt>
+      Created at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_review.created_at) %> ago
+    </dd>
+
+    <dt>
+      Updated at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_review.updated_at) %> ago
+    </dd>
+  </dl>
+</div>
+</div>
+
+<hr>
+
+<div>
+  <h2>
+    Edit review
+  </h2>
+
+  <form action="/modify_review/<%= @the_review.id %>"  method="post" >
     <div>
-      <div>
-        <a href="/reviews">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_review/<%= @the_review.id %>">
-          Delete review
-        </a>
-      </div>
+      <input type="hidden" name="query_book_id" value="<%= @the_review.book_id %>">
     </div>
 
-    <dl>
-      <dt>
+    <div>
+      <input type="hidden" name="query_user_id" value="<%= @the_review.user_id %>">
+    </div>
+
+    <div>
+      <label for="rating_box">
         Rating
-      </dt>
-      <dd>
-        <%= @the_review.rating %>
-      </dd>
+      </label>
 
-      <dt>
+      <input type="text" id="rating_box" name="query_rating" value="<%= @the_review.rating %>">
+    </div>
+
+    <div>
+      <label for="commentary_box">
         Commentary
-      </dt>
-      <dd>
-        <%= @the_review.commentary %>
-      </dd>
+      </label>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_review.created_at) %> ago
-      </dd>
+      <textarea id="commentary_box" name="query_commentary" value="<%=@the_review.commentary%>"> <%= @the_review.commentary %></textarea>
+    </div>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_review.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
+    <button class="btn btn-outline-dark">
+      Update review
+    </button>
+  </form>
 </div>
-
-<hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit review
-    </h2>
-
-    <form action="/modify_review/<%= @the_review.id %>"  method="post" >
-      <div>
-        <input type="hidden" name="query_book_id" value="<%= @the_review.book_id %>">
-      </div>
-
-      <div>
-        <input type="hidden" name="query_user_id" value="<%= @the_review.user_id %>">
-      </div>
-
-      <div>
-        <label for="rating_box">
-          Rating
-        </label>
-
-        <input type="text" id="rating_box" name="query_rating" placeholder="<%= @the_review.rating %>">
-      </div>
-
-      <div>
-        <label for="commentary_box">
-          Commentary
-        </label>
-
-        <textarea id="commentary_box" name="query_commentary"> <%= @the_review.commentary %></textarea>
-      </div>
-
-      <button>
-        Update review
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
