@@ -39,7 +39,7 @@
               <option> On Shelf </option> 
             </select>
           </td>
-          <td> <img src="<%= a_TBR.book.cover %>"> </td> 
+          <td> <img src="<%= a_TBR.book.cover %>" class="img-thumbnail"> </td> 
           <td> <a href="/books/<%=a_TBR.book.id%>"> <%= a_TBR.book.title %> </a> </td>
           <td> <a href="/authors/<%=a_TBR.book.author.id%>"> <%= a_TBR.book.author.name %> </a> </td> 
           <td> <%= a_TBR.book.publication_date.year() %> </td> 
@@ -123,7 +123,7 @@
     <tbody>
       <% @user.completeds.each do |a_book| %>
       <tr>
-        <td> <img src="<%=a_book.book.cover%>" > </td>
+        <td> <img src="<%=a_book.book.cover%>" class="img-thumbnail"> </td>
         <td> <a href="/books/<%=a_book.book.id%>"> <%= a_book.book.title %> </a> </td> 
         <td> <a href="/authors/<%= a_book.book.author.id %>"> <%= a_book.book.author.name %> </a>  </td> 
         <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
