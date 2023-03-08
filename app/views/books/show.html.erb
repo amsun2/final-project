@@ -121,14 +121,14 @@
     </thead>
 
     <tbody>
-      <tr>
         <% @the_book.reviews.each do |a_review| %>
-          <td> <%= a_review.user.username %> </td>
-          <td> <%= a_review.rating %> </td>
-          <td> <%= a_review.commentary %> </td>
-          <td> <%= time_ago_in_words(a_review.updated_at)%> ago
-          <% end %>
-        </tr>
+          <tr>
+            <td> <%= a_review.user.username %> </td>
+            <td> <%= a_review.rating %> </td>
+            <td> <%= a_review.commentary %> </td>
+            <td> <%= time_ago_in_words(a_review.updated_at)%> ago
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

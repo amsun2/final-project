@@ -27,8 +27,8 @@
     <thead>
       <tr>
         <th scope="col"> Title </th>
+        <th scope="col"> </th>
         <th scope="col"> Genre </th>
-        <th scope="col"> Synopsis </th>
         <th scope="col"> Publication Year </th>
         <th scope="col"> Average Rating </th>
       </tr>
@@ -36,13 +36,15 @@
     <tbody>
       <% @the_author.books.each do |a_book| %>
         <tr>
-          <td> <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> </td>
-          <td> 
+          <td> <img src="<%=a_book.cover%>" class="img-thumbnail">
+          </td>
+          <td> <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> 
+          </td>
+          <td>
             <% a_book.genres.each do |a_genre| %>
               <ul class="list-group"> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </ul>
             <% end %>
           </td>
-          <td> <%= a_book.synoposis %> </td>
           <td> <%= a_book.publication_date.year() %> </td>
           <td>
             <% rating_sum = 0 %>
