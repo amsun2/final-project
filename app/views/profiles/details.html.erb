@@ -141,11 +141,11 @@
                       <input type="hidden" name="query_book_id" value="<%=a_book.book.id%>">
                       <input type="hidden" name="query_user_id" value="<%=@user.id%>">
                       <label for="rating_box"> Rating (out of 5.0) </label> 
-                      <input type="text" id="rating_box" name="query_rating">
+                      <input type="integer" id="rating_box" name="query_rating">
                       <label for="commentary_box">
                         Commentary
                       </label>
-                      <textarea id="commentary_box" name="query_commentary" rows="3"></textarea>
+                      <textarea class="form-control" id="commentary_box" name="query_commentary" rows="3"></textarea>
                       <button type="button" class="btn btn-outline-dark"> Add review </button>
                   </form>
 
