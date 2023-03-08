@@ -118,7 +118,7 @@
     <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
             Have not rated
           <% else %>
-            <%= a_book.book.reviews.at(0).rating %> 
+            <%= a_book.book.reviews.where(user_id: @user.id).at(0).rating %> 
           <% end %>
     </td>  
     <td> <% if a_book.book.reviews.where(user_id: @user.id).at(0) == nil %>
@@ -188,18 +188,16 @@
 
 <hr>
 
-<h2> Recommendations </h2> 
+<h2> Check out these highly-rated books! </h2> 
 
 <ul> 
-  <li> Title 1 (link to details page) </li>
-  <li> Title 2 </li> 
-</ul>
+  <% Review.where(rating: 3.5...).each do |a_review| %> 
+    <% if Completed.where(user_id: @user.id, book_id: a_review.book.id).length==0 && Tbr.where(user_id: @user.id, book_id: a_review.book.id).length==0 %>
+      <li> <a href="/books/<%=a_review.book.id%>"> <%= a_review.book.title %> (<%=a_review.book.author.name%>) </a> </li>
+    <% end %>
+  <% end %>
+</ul> 
 
-<% @user.reviews.where(rating: 3.5...).each do |a_review| %>
-  Liked <%= a_review.book.title %>? 
-
-
-<% end %>
 
 <hr> 
 
