@@ -1,86 +1,92 @@
-<div>
-  <div>
-    <a href="/authors">
-    Browse all authors
-    </a>
-  </div>
-  
-  <div>
-    <h1>
-      <%= @the_author.name %>
-    </h1>
+<hr>
 
-    <dl>
-      <dd>
-        <img src="<%= @the_author.photo %>">
-      </dd>
-    </dl>
+<div class="text-center">
+  <h1>
+    <%= @the_author.name %>
+  </h1>
 
-    <dl>
-      <dd>
-        <%= @the_author.bio %>
-      </dd>
-    </dl>
-  </div>
+  <dl>
+    <dd>
+      <img src="<%= @the_author.photo %>" class="rounded">
+    </dd>
+  </dl>
+
+  <dl>
+    <dd>
+      <%= @the_author.bio %>
+    </dd>
+  </dl>
 </div>
 
 <hr>
 
-<h2> List of Books </h2> 
+<h2> List of works </h2>
 
-<table border="1">
-  <tr>
-    <th> Title </th>
-    <th> Genre </th> 
-    <th> Synopsis </th> 
-    <th> Publication Date </th> 
-    <th> Average Rating </th> 
-  <tr> 
-
-  <% @the_author.books.each do |a_book| %>
-  <tr>
-    <td> <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> </td>
-    <td> 
-      <% a_book.genres.each do |a_genre| %> 
-        <li> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </li> 
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th scope="col"> Title </th>
+        <th scope="col"> Genre </th>
+        <th scope="col"> Synopsis </th>
+        <th scope="col"> Publication Year </th>
+        <th scope="col"> Average Rating </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @the_author.books.each do |a_book| %>
+        <tr>
+          <td> <a href="/books/<%=a_book.id%>"> <%= a_book.title %> </a> </td>
+          <td> 
+            <% a_book.genres.each do |a_genre| %>
+              <ul class="list-group"> <a href="/genre_lists/<%=a_genre.genre_id%>"> <%= a_genre.genre.genre_name %> </a> </ul>
+            <% end %>
+          </td>
+          <td> <%= a_book.synoposis %> </td>
+          <td> <%= a_book.publication_date.year() %> </td>
+          <td>
+            <% rating_sum = 0 %>
+            <% rating_count = 0 %>
+            <% a_book.reviews.each do |a_review| %>
+              <% rating = a_review.rating %>
+              <% rating_sum = rating_sum + rating %>
+              <% rating_count = rating_count + 1 %>
+            <% end %>
+            <% if rating_count == 0 %>
+              No ratings yet
+            <% else %>
+              <%= rating_sum / rating_count %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </td>
-    <td> <%= a_book.synoposis %> </td>
-    <td> <%= a_book.publication_date.year() %> </td>
-    <td>
-        <% rating_sum = 0 %>
-        <% rating_count = 0 %>
-        <% a_book.reviews.each do |a_review| %>
-          <% rating = a_review.rating %> 
-          <% rating_sum = rating_sum + rating %>
-          <% rating_count = rating_count + 1 %>
-        <% end %>
-        <% if rating_count == 0 %>
-          No ratings yet
-        <% else %>
-          <%= rating_sum / rating_count %> 
-        <% end %>
-    </td> 
-  <tr>
-  <% end %>
-
-</table>
+    </tbody>
+  </table>
+</div>
 
 <hr>
 
-<h3> Update author info </h3> 
+<h3> Update author info </h3>
 
-<div> 
-  <form action="/modify_author/<%=@the_author.id%>" method="post"> 
-    
+<div>
+  <form action="/modify_author/<%=@the_author.id%>" method="post">
+
     <input id="name_box" name="query_name" value="<%=@the_author.name%>" type="hidden">
 
-    <label for="photo_box"> Update photo </label> 
-    <input id="photo_box" name="query_photo" placeholder="<%=@the_author.photo%>" type="text"> 
-
-    <label for="bio_box"> Update bio </label>
-    <input id="bio_box" name="query_bio" type="text"> 
-
-    <button> Update author </button>
+    <dl>
+      <label for="photo_box"> Link to photo </label>
+    </dl>
+    <dd>
+      <input id="photo_box" name="query_photo" value="<%=@the_author.photo%>" type="text">
+    </dd>
+    <dl>
+      <label for="bio_box"> Biography </label>
+    </dl>
+    <dd>
+      <textarea id="bio_box" name="query_bio" rows="3" value="<%=@the_author.bio%>"><%=@the_author.bio%></textarea>
+    </dl>
+    <p>
+      <button type="button" class="btn btn-outline-dark"> Update author </button>
+    </p>
   </form>
-</div> 
+</div>
